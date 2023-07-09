@@ -1,0 +1,24 @@
+import ToolBar from "../components/ToolBar";
+import { Video } from "../player/video";
+import { playerOptions } from "../types/player";
+import Component from "../utils/createElement";
+
+class Player extends Component {
+
+    options: playerOptions;
+
+    constructor(options: playerOptions) {
+        super(options.el, 'div', { className: 'video-container' });
+        this.options = options;
+        this.init();
+    }
+    init() {
+        new Video({
+            el: this.element,
+            url: this.options.url
+        })
+        new ToolBar(this.element);
+    }
+}
+
+export {Player};
