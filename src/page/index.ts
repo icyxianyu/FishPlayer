@@ -1,7 +1,7 @@
-import ToolBar from "../components/ToolBar";
-import { Video } from "../player/video";
-import { playerOptions } from "../types/player";
-import Component from "../utils/createElement";
+import ToolBar from "@/components/ToolBar";
+import { Video } from "@/player/video";
+import { playerOptions } from "@/types/player";
+import Component from "@/utils/createElement";
 
 class Player extends Component {
 
@@ -13,12 +13,12 @@ class Player extends Component {
         this.init();
     }
     init() {
-        new Video({
+        const video = new Video({
             el: this.element,
             url: this.options.url
         })
-        new ToolBar(this.element);
+        new ToolBar(this.element, video);
     }
 }
 
-export {Player};
+export { Player };

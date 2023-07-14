@@ -1,6 +1,9 @@
 import ts from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import alias from '@rollup/plugin-alias';
+import { resolve } from 'path';
+import { fileURLToPath } from 'url';
 import {
     nodeResolve
 } from '@rollup/plugin-node-resolve';
@@ -60,5 +63,10 @@ export default defineConfig([{
             ],
             extract: 'css/index.css',
         }),
+        alias({
+            entries: [
+                { find: '@', replacement: resolve(fileURLToPath(import.meta.url), 'src') },
+            ],
+          }),
     ],
 }, ]);

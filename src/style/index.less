@@ -22,7 +22,28 @@
         background-color: rgba(255, 255, 255, 0.5);
         opacity: 0;
         transition: all 0.5s ;
-
+        display: flex;
+        justify-content: space-between;
+        .left-container{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .play-button{
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+        }
+        svg{
+            height: 100%;
+            width: 100%;
+            opacity: 0.8;
+            
+        }
     }
     &:hover .video-toolbar{
         opacity: 1;

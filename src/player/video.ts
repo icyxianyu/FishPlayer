@@ -1,5 +1,5 @@
-import { playerOptions } from "../types/player"
-import Component from "../utils/createElement";
+import { playerOptions } from "@/types/player";
+import Component from "@/utils/createElement";
 
 class Video extends Component {
     options: playerOptions;
