@@ -6,7 +6,7 @@ import LeftContainer from "./Left";
 class ToolBar extends Component{
 
     constructor(container: HTMLElement, video:Video) {
-        super(container,'div',{className:'video-toolbar'});
+        super(container,'div',{class:'video-toolbar'});
         new LeftContainer(this.element,video);
     }
 }

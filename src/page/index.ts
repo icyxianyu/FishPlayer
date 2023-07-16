@@ -8,7 +8,7 @@ class Player extends Component {
     options: playerOptions;
 
     constructor(options: playerOptions) {
-        super(options.el, 'div', { className: 'video-container' });
+        super(options.el, 'div', { class: 'video-container' });
         this.options = options;
         this.init();
     }

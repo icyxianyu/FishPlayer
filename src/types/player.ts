@@ -4,6 +4,5 @@ export type playerOptions = {
 }
 
 export type classProps = {
-    id?: string;
-    className?:string;
-}
+    [key: string]: string;
+};

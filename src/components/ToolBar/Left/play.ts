@@ -9,7 +9,7 @@ class PlayButton extends Component {
     player: HTMLVideoElement;
     playState: boolean;
     constructor(container: HTMLElement,video:Video) {
-        super(container, "div", { className: "play-button" });
+        super(container, "div", { class: "play-button icon" });
         this.play = createSVG(playIcon);
         this.pause = createSVG(pauseIcon);
         this.player = video.element as HTMLVideoElement;
