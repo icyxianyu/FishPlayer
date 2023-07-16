@@ -2,7 +2,7 @@ import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
-import { volumeIcon, volumeOffIcon } from "@/utils/svgPath";
+import { volumeIcon, volumeOffIcon } from "@/constant";
 
 class VolumeButton extends Component {
 

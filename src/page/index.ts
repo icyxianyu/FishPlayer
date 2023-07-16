@@ -17,7 +17,7 @@ class Player extends Component {
             el: this.element,
             url: this.options.url
         })
-        new ToolBar(this.element, video);
+        new ToolBar(this.element, video,this ,this.options);
     }
 }
 

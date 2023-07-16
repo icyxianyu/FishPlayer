@@ -2,7 +2,7 @@
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
-import { pauseIcon, playIcon } from "@/utils/svgPath";
+import { pauseIcon, playIcon } from "@/constant";
 class PlayButton extends Component {
     play: SVGSVGElement;
     pause: SVGSVGElement;

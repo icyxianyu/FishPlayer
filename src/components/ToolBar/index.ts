@@ -1,13 +1,17 @@
 
+import { Player } from "@/page";
 import { Video } from "@/player/video";
+import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 import LeftContainer from "./Left";
+import RightContainer from "./Right";
 
 class ToolBar extends Component{
 
-    constructor(container: HTMLElement, video:Video) {
+    constructor(container: HTMLElement, video:Video, Player:Player, options:playerOptions ) {
         super(container,'div',{class:'video-toolbar'});
         new LeftContainer(this.element,video);
+        new RightContainer(this.element,video, Player)
     }
 }
 

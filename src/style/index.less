@@ -11,6 +11,9 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+        object-fit: fill;
     }
 
     .video-toolbar{
@@ -24,11 +27,11 @@
         transition: all 0.5s ;
         display: flex;
         justify-content: space-between;
-        .left-container{
+        .toolbox-container{
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center;;
             .volume{
                 position: relative;
                 .volume-slider{
@@ -49,6 +52,12 @@
 
 
 
+        }
+        .left{
+            justify-content: left;
+        }
+        .right{
+            justify-content: right;
         }
         .icon{
             width: 30px;
