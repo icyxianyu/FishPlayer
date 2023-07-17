@@ -17,16 +17,18 @@
     }
 
     .video-toolbar{
+        box-sizing: border-box;
         position: absolute;
+        padding: 5px;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 10%;
-        background-color: rgba(255, 255, 255, 0.5);
+        height: 50px;
         opacity: 0;
         transition: all 0.5s ;
         display: flex;
         justify-content: space-between;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
         .toolbox-container{
             flex: 1;
             display: flex;
@@ -49,9 +51,14 @@
                     opacity: 1;
                 }
             }
-
-
-
+            .time-bar{
+                display:flex;
+                padding-left: 1em;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                user-select: none;
+            }
         }
         .left{
             justify-content: left;
