@@ -5,9 +5,13 @@ import { playerOptions } from "@/types/player";
 
 class CurrentButton extends Component {
     constructor(container: HTMLElement, video: Video, Player: Player) {
-        super(container, 'div', { class: 'progress-bar' ,type:"range",min:"0",max:"100"});
+        super(container, 'div', { class: 'currentButton' });
+        this.initEvent();
+    }
+    initEvent(){
         
     }
+
 }
 
 export default CurrentButton;
