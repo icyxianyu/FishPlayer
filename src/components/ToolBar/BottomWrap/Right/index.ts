@@ -7,7 +7,7 @@ import FullScreen from "./fullscreen";
 
 class RightContainer extends Component {
     constructor(container: HTMLElement, video: Video, Player: Player) {
-        super(container, "div", {class: "toolbox-container right"});
+        super(container, "div", { class: "toolbox-container right" });
         new FullScreen(this.element, video, Player);
     }
 }
