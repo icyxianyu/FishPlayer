@@ -11,6 +11,7 @@ class Video extends Component {
         this.player = this.element as HTMLVideoElement;
         this.options = options;
         this.init();
+        this.initEvent();
         this.initEventHub();
     }
     init(){
@@ -18,9 +19,17 @@ class Video extends Component {
             this.element.src = this.options.url;
         }
     }
+    initEvent(){
+        this.player.ontimeupdate = () =>{
+            Component.eventHub.emit(PLAY_EVENT.TIMEUPDATE,this.player.currentTime);
+        }
+    }
     initEventHub(){
         Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE,(value:number)=>{
             this.player.volume = value/100;
+        })
+        Component.eventHub.on(PLAY_EVENT.MOUSECLICK,(persent:number)=>{
+            this.player.currentTime = this.player.duration * persent;
         })
     }  
 }

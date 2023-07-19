@@ -10,7 +10,7 @@ class Total extends Component{
     }
     init(){
         this.player.oncanplay = () =>{
-            this.element.innerHTML = timeToMinutes(this.player.duration.toString());
+            this.element.innerHTML = timeToMinutes(this.player.duration);
         }
     }
 }

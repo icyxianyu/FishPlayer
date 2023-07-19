@@ -73,14 +73,21 @@
         }
         .topWrap{
             width:100%;
-            height:5px;
-            background-color: #ccc;
+            height:20px;
             position: relative;
             cursor: pointer;
+            .progress-bar{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                height: 25%;
+                background-color: #ccc;
+            }
             .currentButton{
-                // position: absolute;
-                width:8px;
-                height:8px;
+                position: absolute;
+                width:5px;
+                height:5px;
                 top:50%;
                 transform:translateY(-50%);
                 background-color: #fff;
