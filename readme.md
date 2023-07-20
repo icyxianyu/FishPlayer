@@ -1,5 +1,5 @@
 #### fishplayer
-
+`TypeScript` `Less` `rollup`
 基于TypeScript的视频播放器
 
 
