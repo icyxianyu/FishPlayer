@@ -5,6 +5,7 @@ import { Video } from "@/player/video";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 import CurrentButton from "./current";
+import HoverContainer from "./hovercontainer/hoverContainer";
 import ProgressBar from "./ProgressBar";
 
 
@@ -14,6 +15,7 @@ class TopWrap extends Component {
         super(container, 'div', { class: 'topWrap' });
         new ProgressBar(this.element)
         new CurrentButton(this.element, video, Player);
+        new HoverContainer(this.element)
         this.initEvent();
         this.initEventHub();
     }
@@ -28,7 +30,7 @@ class TopWrap extends Component {
 
         this.element.onmousemove = (e: MouseEvent) => {
             const { x } = e;
-            Component.eventHub.emit(PLAY_EVENT.MOUSEDRAG, x);
+            Component.eventHub.emit(PLAY_EVENT.MOUSEMOVE, x);
         }
 
         this.element.onmouseleave = (e: MouseEvent) => {

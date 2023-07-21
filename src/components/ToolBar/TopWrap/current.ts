@@ -22,7 +22,7 @@ class CurrentButton extends Component {
             this.isDrag = isDrag;
         })
 
-        Component.eventHub.on(PLAY_EVENT.MOUSEDRAG, (place: number) => {
+        Component.eventHub.on(PLAY_EVENT.MOUSEMOVE, (place: number) => {
             if (this.isDrag)
                 this.element.style.left = `${place}px`;
         })
