@@ -11,6 +11,8 @@ const PLAY_EVENT = {
     MOUSEMOVE: 'MouseMove',
     // 工具栏鼠标离开事件
     MOUSELEAVE: 'MouseLeave',
+    // 播放速度改变事件
+    RATECHANGE: 'RateChange',
 }
 
 export default PLAY_EVENT;
