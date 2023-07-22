@@ -1,8 +1,9 @@
-#### fishplayer
+# Fishplayer
 `TypeScript` `Less` `rollup`
-基于TypeScript的视频播放器
 
+## 基于TypeScript的视频播放器
 
+不基于某一种开发框架，可以在任何框架中使用，可自定义功能插件(暂未实现)
 
 目标和进展
 
