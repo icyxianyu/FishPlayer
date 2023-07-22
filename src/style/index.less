@@ -91,6 +91,7 @@
                 top:50%;
                 transform:translateY(-50%);
                 background-color: #fff;
+                pointer-events: none;
             }
             &:hover .currentButton{
                 outline: skyblue solid 2px;
@@ -103,6 +104,15 @@
                 top: 50%;
                 width:15px;
                 display: none;
+                pointer-events: none;
+            }
+            .timebar{
+                position: absolute;
+                font-size:15px;
+                transform: translate(-25%,-250%);
+                background-color: #00000083;
+                padding:0 2px;
+                color:#ccc;
             }
         }
         .icon{

@@ -15,7 +15,7 @@ class TopWrap extends Component {
         super(container, 'div', { class: 'topWrap' });
         new ProgressBar(this.element)
         new CurrentButton(this.element, video, Player);
-        new HoverContainer(this.element)
+        new HoverContainer(this.element,video)
         this.initEvent();
         this.initEventHub();
     }
@@ -29,14 +29,21 @@ class TopWrap extends Component {
         }
 
         this.element.onmousemove = (e: MouseEvent) => {
-            const { x } = e;
-            Component.eventHub.emit(PLAY_EVENT.MOUSEMOVE, x);
+            const { offsetX } = e;
+            const { width } = this.element.getBoundingClientRect();
+            Component.eventHub.emit(PLAY_EVENT.MOUSEMOVE, offsetX, width);
+        }
+
+        this.element.onmouseenter = (e: MouseEvent) => {
+            Component.eventHub.emit(PLAY_EVENT.MOUSELEAVE, false);
         }
 
         this.element.onmouseleave = (e: MouseEvent) => {
             if(this.isDrag)
             this.changeCurrent(e);
+            Component.eventHub.emit(PLAY_EVENT.MOUSELEAVE, true);
         }
+
     }
     initEventHub() {
         Component.eventHub.on(PLAY_EVENT.ISDRAG, (isDrag:boolean) => {
@@ -45,10 +52,11 @@ class TopWrap extends Component {
     }
 
     changeCurrent(e: MouseEvent) {
-        const { x } = e;
+        const { offsetX } = e;
         const { width } = this.element.getBoundingClientRect();
+        console.log(offsetX, width);
         Component.eventHub.emit(PLAY_EVENT.ISDRAG, false);
-        Component.eventHub.emit(PLAY_EVENT.MOUSECLICK, x / width);
+        Component.eventHub.emit(PLAY_EVENT.MOUSECLICK, offsetX / width);
         
     }
 }

@@ -1,16 +1,22 @@
 import PLAY_EVENT from "@/constant/event";
+import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
+import { timeToMinutes } from "@/utils/time";
 
-class HoverContainer extends Component {
-    constructor(container: HTMLElement) {
-        super(container, 'div', { class: 'hover-container' });
+class time extends Component {
+    video: Video;
+    constructor(container: HTMLElement, video: Video) {
+        super(container, 'div', { class: 'timebar' });
+        this.video = video;
         this.initEventHub();
     }
     initEventHub() {
-        Component.eventHub.on(PLAY_EVENT.MOUSEMOVE, (x:string) => {
-            
+        Component.eventHub.on(PLAY_EVENT.MOUSEMOVE, (x: string, width: string) => {
+            this.element.innerHTML = timeToMinutes(
+                (parseInt(x) / parseInt(width)) *
+                (this.video.element as HTMLVideoElement).duration);
         })
     }
 }
 
-export default HoverContainer;
+export default time;

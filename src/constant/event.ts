@@ -3,13 +3,13 @@ const PLAY_EVENT = {
     TIMEUPDATE: 'TimeUpdate',
     // 声音事件
     SOUNDCHANGE: 'SoundChange',
-    // 鼠标点击事件
+    // 工具栏鼠标点击事件
     MOUSECLICK: 'MouseClick',
-    // 是否处于拖拽
+    // 工具栏是否处于拖拽
     ISDRAG: 'IsDrag',
-    // 鼠标移动事件
+    // 工具栏鼠标移动事件
     MOUSEMOVE: 'MouseMove',
-    // MouseLeave
+    // 工具栏鼠标离开事件
     MOUSELEAVE: 'MouseLeave',
 }
 
