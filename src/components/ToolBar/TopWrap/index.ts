@@ -13,7 +13,7 @@ class TopWrap extends Component {
     isDrag: boolean | undefined;
     constructor(container: HTMLElement, video: Video, Player: Player, options: playerOptions) {
         super(container, 'div', { class: 'topWrap' });
-        new ProgressBar(this.element)
+        new ProgressBar(this.element,video)
         new CurrentButton(this.element, video, Player);
         new HoverContainer(this.element,video)
         this.initEvent();
