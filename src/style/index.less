@@ -39,7 +39,6 @@
                 justify-content: center;
                 font-weight: bold;
                 .volume{
-                    position: relative;
                     .volume-slider{
                         position: absolute;
                         opacity: 0;
@@ -63,14 +62,21 @@
                     user-select: none;
                     text-align: center;
                 }
-                .RateChange{
-                    display:flex;
-                    color: white;
-                    cursor: pointer;
-                    user-select: none;
-                    padding : 0 1em;
-                    text-align: center;
-
+                .Rate{
+                    .RateChange{
+                        display:flex;
+                        color: white;
+                        cursor: pointer;
+                        user-select: none;
+                        padding : 0 1em;
+                        text-align: center;
+                    }
+                }
+                .toolButton{
+                    position: relative;
+                    .modal{
+                        position: absolute;
+                    }
                 }
             }
             .left{

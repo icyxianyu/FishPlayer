@@ -1,8 +1,9 @@
-import Component from "@/utils/createElement";
+import Modal from "@/utils/model";
 
-class Menu extends Component{
+class Menu extends Modal{
     constructor(container:HTMLElement){
-        super(container,'div',{class:'menu'});
+        super(container);
+        
     }
     
 }

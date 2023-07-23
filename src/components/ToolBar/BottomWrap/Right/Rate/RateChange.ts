@@ -1,12 +1,10 @@
 import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
-import Menu from "./Menu";
 
 class RateChange extends Component {
     constructor(container: HTMLElement, video: Video) {
         super(container, 'div', { class: 'RateChange' });
-        new Menu(this.element)
         this.element.innerHTML = `倍数`;
         this.initEventHub();
     }

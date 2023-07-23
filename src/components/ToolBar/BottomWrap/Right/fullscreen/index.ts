@@ -12,7 +12,7 @@ class FullScreen extends Component {
     Player: Player;
 
     constructor(container: HTMLElement, video: Video, Player: Player) {
-        super(container, "div", { class: "full-screen icon" });
+        super(container, "div", { class: "full-screen toolButton icon" });
         this.Player = Player;
         this.initIcon();
         this.initEvent();

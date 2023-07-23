@@ -2,7 +2,7 @@ import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 
-class VolumeSlider extends Component {
+class VolumeSlider extends Component  {
     constructor(container: HTMLElement, video: Video) {
         super(container, "input",
             {
