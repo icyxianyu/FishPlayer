@@ -31,6 +31,9 @@ class Video extends Component {
         Component.eventHub.on(PLAY_EVENT.MOUSECLICK,(persent:number)=>{
             this.player.currentTime = this.player.duration * persent;
         })
+        Component.eventHub.on(PLAY_EVENT.RATECHANGE,(rate:number)=>{
+            this.player.playbackRate = rate;
+        })
     }  
 }
 

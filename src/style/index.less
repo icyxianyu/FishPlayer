@@ -39,20 +39,7 @@
                 justify-content: center;
                 font-weight: bold;
                 .volume{
-                    .volume-slider{
-                        position: absolute;
-                        opacity: 0;
-                        top: 0;
-                        left: 50%;
-                        transform: translate(0, -100%) rotate(270deg);
-                        transform-origin: left;
-                        transition:all 0.5s;
-                        // 添加半透明背景
-                        background-color: rgba(0, 0, 0, 0.5);
-                    }
-                    &:hover .volume-slider{
-                        opacity: 1;
-                    }
+
                 }
                 .time-bar{
                     display:flex;
@@ -71,10 +58,27 @@
                         padding : 0 1em;
                         text-align: center;
                     }
+                    .menu{
+                        padding:0 1em;
+                        .singleRate{
+                            font-size: 0.5em;
+                            font-weight: lighter;
+                            color: white;
+                            cursor: pointer;
+                            user-select: none;
+                            padding : 0.2em;
+                            text-align: center;
+                        }
+                        .active{
+                            color:skyblue;
+                        }
+                    }
+                    
                 }
                 .toolButton{
                     position: relative;
                     .modal{
+                        padding: 1px;
                         position: absolute;
                     }
                 }
