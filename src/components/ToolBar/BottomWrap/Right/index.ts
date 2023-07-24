@@ -4,6 +4,7 @@ import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import FullScreen from "./fullscreen";
 import Rate from "./Rate";
+import ScreenShot from "./screenshot";
 import Volume from "./volume";
 
 class RightContainer extends Component {
@@ -11,6 +12,7 @@ class RightContainer extends Component {
         super(container, "div", { class: "toolbox-container right" });
         new Volume(this.element, video);
         new Rate(this.element, video);
+        new ScreenShot(this.element, video)
         new FullScreen(this.element, video, Player);
     }
 }

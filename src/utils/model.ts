@@ -48,6 +48,5 @@ class Modal extends Component {
             }, this.time)
         }
     }
-
 }
 export default Modal;
