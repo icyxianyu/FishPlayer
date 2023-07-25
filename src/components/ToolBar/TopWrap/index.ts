@@ -13,9 +13,9 @@ class TopWrap extends Component {
     isDrag: boolean | undefined;
     constructor(container: HTMLElement, video: Video, Player: Player, options: playerOptions) {
         super(container, 'div', { class: 'topWrap' });
-        new ProgressBar(this.element,video)
+        new ProgressBar(this.element,video,Player);
         new CurrentButton(this.element, video, Player);
-        new HoverContainer(this.element,video)
+        new HoverContainer(this.element,video);
         this.initEvent();
         this.initEventHub();
     }
@@ -54,7 +54,6 @@ class TopWrap extends Component {
     changeCurrent(e: MouseEvent) {
         const { offsetX } = e;
         const { width } = this.element.getBoundingClientRect();
-        console.log(offsetX, width);
         Component.eventHub.emit(PLAY_EVENT.ISDRAG, false);
         Component.eventHub.emit(PLAY_EVENT.MOUSECLICK, offsetX / width);
         

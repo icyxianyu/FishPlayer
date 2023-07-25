@@ -1,6 +1,8 @@
 import PLAY_EVENT from "@/constant/event";
+import { Player } from "@/page";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
+import BuffererBar from "./bufferedBar";
 
 class progress extends Component {
     parentNode: HTMLElement;
@@ -15,16 +17,17 @@ class progress extends Component {
         Component.eventHub.on(PLAY_EVENT.TIMEUPDATE, (time:number) => {
             const { width } = this.parentNode.getBoundingClientRect();
             const persent = time / this.video.duration;
-            console.log(persent,width)
             this.element.style.width = `${persent * width}px`;
         })
     }
 
 }
 class ProgressBar extends Component {
-    constructor(container: HTMLElement, video: Video) {
+    constructor(container: HTMLElement, video: Video, Player:Player) {
         super(container, 'div', { class: 'progress-bar' });
         new progress(this.element, video);
+        new BuffererBar(this.element, video, Player);
+
     }
 }
 export default ProgressBar;
