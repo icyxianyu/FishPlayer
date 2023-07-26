@@ -32,16 +32,31 @@ class Player extends Component {
         this.element.onmousemove = () => {
             clearTimeout(this.timer);
             if(this.isPause) return;
-            
+
             Component.eventHub.emit(PLAY_EVENT.ISHIDE, true);
             this.timer = setTimeout(() => {
                 Component.eventHub.emit(PLAY_EVENT.ISHIDE, false);
             }, 2000)
         }
+
+        // 监听按键事件
+        document.onkeydown = (e) => {
+            if (e.code === 'Space') {
+                Component.eventHub.emit(PLAY_EVENT.ISPAUSE, !this.isPause);
+            }else if(e.code === 'ArrowUp'){
+                Component.eventHub.emit(PLAY_EVENT.FIXEDSOUNDCHANGE,5);
+            }else if(e.code === 'ArrowDown'){
+                Component.eventHub.emit(PLAY_EVENT.FIXEDSOUNDCHANGE,-5);
+            }else if(e.code === 'ArrowLeft'){
+                Component.eventHub.emit(PLAY_EVENT.FORWARD,-5);
+            }else if(e.code === 'ArrowRight'){
+                Component.eventHub.emit(PLAY_EVENT.FORWARD,5);
+            }
+        }
     }
+
     initEventHub() {
         Component.eventHub.on(PLAY_EVENT.ISPAUSE, (isPause: boolean) => {
-            console.log(isPause)
             this.isPause = isPause;
         })
     }

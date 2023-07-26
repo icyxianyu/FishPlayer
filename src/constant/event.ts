@@ -22,6 +22,11 @@ const PLAY_EVENT = {
     // 工具栏鼠标移入事件
     MOUSEENTER: 'MouseEnter',
 
+
+    // 快进和快退事件
+    FORWARD: 'Forward',
+    // 固定声音改变事件
+    FIXEDSOUNDCHANGE: 'FixedSoundChange',
 }
 
 export default PLAY_EVENT;

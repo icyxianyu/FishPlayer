@@ -20,8 +20,25 @@ class Video extends Component {
         }
     }
     initEvent(){
+    
+        //监听播放事件
         this.player.ontimeupdate = () =>{
             Component.eventHub.emit(PLAY_EVENT.TIMEUPDATE,this.player.currentTime);
+        }
+    
+        //监听点击事件
+        this.player.onclick = () =>{
+            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,!this.player.paused);
+        }
+
+        //播放结束
+        this.player.onended = () =>{
+            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,true);
+        }
+
+        // 加载事件
+        this.player.onprogress = () =>{
+            console.log('waiting')
         }
     }
 
@@ -30,9 +47,23 @@ class Video extends Component {
         Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE,(value:number)=>{
             this.player.volume = value/100;
         })
+
+        Component.eventHub.on(PLAY_EVENT.FIXEDSOUNDCHANGE,(value:number)=>{
+            let volume = this.player.volume * 100 + value;
+
+            if(volume > 100){
+                volume = 100;
+            }else if(volume < 0){
+                volume = 0;
+            }
+
+            Component.eventHub.emit(PLAY_EVENT.SOUNDCHANGE,volume);
+        })
+    
         Component.eventHub.on(PLAY_EVENT.MOUSECLICK,(persent:number)=>{
             this.player.currentTime = this.player.duration * persent;
         })
+
         Component.eventHub.on(PLAY_EVENT.RATECHANGE,(rate:number)=>{
             this.player.playbackRate = rate;
         })
@@ -43,6 +74,10 @@ class Video extends Component {
             }else{
                 this.player.play();
             }
+        })
+
+        Component.eventHub.on(PLAY_EVENT.FORWARD,(value:number)=>{
+            this.player.currentTime += value;
         })
 
     }  

@@ -4,6 +4,7 @@ import { Player } from "@/page";
 import { Video } from "@/player/video";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
+import getOffSetX from "@/utils/offsetX";
 import CurrentButton from "./current";
 import HoverContainer from "./hovercontainer/hoverContainer";
 import ProgressBar from "./ProgressBar";
@@ -29,10 +30,10 @@ class TopWrap extends Component {
         }
 
         this.element.onmousemove = (e: MouseEvent) => {
-            const { offsetX } = e;
+            const offsetX = getOffSetX(e, this.element)
             const { width } = this.element.getBoundingClientRect();
             Component.eventHub.emit(PLAY_EVENT.MOUSEMOVE, offsetX, width);
-        }
+        }          
 
         this.element.onmouseenter = (e: MouseEvent) => {
             Component.eventHub.emit(PLAY_EVENT.MOUSELEAVE, false);
@@ -52,7 +53,7 @@ class TopWrap extends Component {
     }
 
     changeCurrent(e: MouseEvent) {
-        const { offsetX } = e;
+        const offsetX = getOffSetX(e, this.element)
         const { width } = this.element.getBoundingClientRect();
         Component.eventHub.emit(PLAY_EVENT.ISDRAG, false);
         Component.eventHub.emit(PLAY_EVENT.MOUSECLICK, offsetX / width);
