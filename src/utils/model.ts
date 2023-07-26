@@ -39,7 +39,6 @@ class Modal extends Component {
 
         this.element.onmouseenter = () => {
             clearTimeout(this.timer);
-
         }
 
         this.element.onmouseleave = () => {

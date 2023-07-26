@@ -24,7 +24,9 @@ class Video extends Component {
             Component.eventHub.emit(PLAY_EVENT.TIMEUPDATE,this.player.currentTime);
         }
     }
+
     initEventHub(){
+
         Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE,(value:number)=>{
             this.player.volume = value/100;
         })
@@ -34,6 +36,15 @@ class Video extends Component {
         Component.eventHub.on(PLAY_EVENT.RATECHANGE,(rate:number)=>{
             this.player.playbackRate = rate;
         })
+
+        Component.eventHub.on(PLAY_EVENT.ISPAUSE,(isPause:boolean)=>{
+            if(isPause){
+                this.player.pause();
+            }else{
+                this.player.play();
+            }
+        })
+
     }  
 }
 

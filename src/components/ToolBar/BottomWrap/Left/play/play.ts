@@ -3,38 +3,39 @@ import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { pauseIcon, playIcon } from "@/constant";
+import PLAY_EVENT from "@/constant/event";
 class PlayButton extends Component {
     play: SVGSVGElement;
     pause: SVGSVGElement;
     player: HTMLVideoElement;
-    playState: boolean;
+
     constructor(container: HTMLElement,video:Video) {
         super(container, "div", { class: "play-button icon" });
         this.play = createSVG(playIcon);
         this.pause = createSVG(pauseIcon);
         this.player = video.element as HTMLVideoElement;
-        this.playState = false;
-        this.replaceElement();
         this.initEvent();
+        this.initEventHub();
+        this.changeIcon(this.player.paused);
     }
 
     initEvent(){
-        this.element.addEventListener("click",()=>{
-            this.replaceElement();
+        this.element.onclick = ()=>{
+            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,!this.player.paused);
+        }
+    }
+    initEventHub(){
+        Component.eventHub.on(PLAY_EVENT.ISPAUSE,(isPause:boolean)=>{
+            this.changeIcon(isPause);
         })
     }
-    replaceElement(){
+
+    changeIcon(isPause:boolean){
         this.element.innerHTML = "";
-
-        if(this.playState){
-            this.element.appendChild(this.pause);
-            this.playState = false;
-            this.player.play();
-        }else{
+        if(isPause){
             this.element.appendChild(this.play);
-            this.playState = true;
-            this.player.pause();
-
+        }else{
+            this.element.appendChild(this.pause);
         }
     }
 }

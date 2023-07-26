@@ -3,6 +3,14 @@ const PLAY_EVENT = {
     TIMEUPDATE: 'TimeUpdate',
     // 声音事件
     SOUNDCHANGE: 'SoundChange',
+    // 播放速度改变事件
+    RATECHANGE: 'RateChange',
+    // 是否暂停事件
+    ISPAUSE: 'IsPause',
+
+
+    // 是否隐藏工具栏
+    ISHIDE: 'IsHide',
     // 工具栏鼠标点击事件
     MOUSECLICK: 'MouseClick',
     // 工具栏是否处于拖拽
@@ -11,8 +19,9 @@ const PLAY_EVENT = {
     MOUSEMOVE: 'MouseMove',
     // 工具栏鼠标离开事件
     MOUSELEAVE: 'MouseLeave',
-    // 播放速度改变事件
-    RATECHANGE: 'RateChange',
+    // 工具栏鼠标移入事件
+    MOUSEENTER: 'MouseEnter',
+
 }
 
 export default PLAY_EVENT;
