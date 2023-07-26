@@ -1,3 +1,4 @@
+import Loading from "@/components/loading/loading";
 import ToolBar from "@/components/ToolBar";
 import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
@@ -25,18 +26,13 @@ class Player extends Component {
             url: this.options.url
         })
         new ToolBar(this.element, video,this ,this.options);
+        new Loading(this.element, video)
     }
     initEvent() {
         Component.eventHub.emit(PLAY_EVENT.ISHIDE, true)
-        //鼠标移动时保持显示，鼠标停止移动后两秒不显示
-        this.element.onmousemove = () => {
-            clearTimeout(this.timer);
-            if(this.isPause) return;
 
-            Component.eventHub.emit(PLAY_EVENT.ISHIDE, true);
-            this.timer = setTimeout(() => {
-                Component.eventHub.emit(PLAY_EVENT.ISHIDE, false);
-            }, 2000)
+        this.element.onmousemove = () => {
+            this.changePasue();
         }
 
         // 监听按键事件
@@ -58,7 +54,17 @@ class Player extends Component {
     initEventHub() {
         Component.eventHub.on(PLAY_EVENT.ISPAUSE, (isPause: boolean) => {
             this.isPause = isPause;
+            this.changePasue();
         })
+    }
+
+    changePasue(){
+        clearTimeout(this.timer);
+        Component.eventHub.emit(PLAY_EVENT.ISHIDE, true);
+        if(this.isPause) return;
+        this.timer = setTimeout(() => {
+            Component.eventHub.emit(PLAY_EVENT.ISHIDE, false);
+        }, 2000)
     }
 }
 
