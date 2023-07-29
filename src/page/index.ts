@@ -1,4 +1,4 @@
-import Loading from "@/components/loading/loading";
+import Loading from "@/components/loading";
 import ToolBar from "@/components/ToolBar";
 import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";

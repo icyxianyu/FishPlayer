@@ -37,13 +37,23 @@ class Video extends Component {
         }
 
         // 加载事件
-        this.player.onprogress = () =>{
-            console.log('waiting')
+        this.player.onwaiting = (en:Event):any =>{
+            Component.eventHub.emit(PLAY_EVENT.WAITING,true);
+        }
+
+        // 加载完成事件
+        this.player.onplaying = (en:Event):any =>{
+            Component.eventHub.emit(PLAY_EVENT.WAITING,false);
+        }
+
+        
+        this.element.oncanplay = (en:Event):any =>{
+            Component.eventHub.emit(PLAY_EVENT.CANPLAY,true);
         }
     }
 
     initEventHub(){
-
+    
         Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE,(value:number)=>{
             this.player.volume = value/100;
         })

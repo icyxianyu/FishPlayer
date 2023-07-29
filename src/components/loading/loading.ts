@@ -1,6 +1,5 @@
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
-
 class Loading extends Component {
     constructor(container:HTMLElement, video:Video) {
         super(container, 'div', { class: 'loadingSeven' });
@@ -13,7 +12,6 @@ class Loading extends Component {
             this.element.appendChild(span.element);
         }
     }
-
 }
 
 export default Loading;

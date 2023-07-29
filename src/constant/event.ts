@@ -7,7 +7,10 @@ const PLAY_EVENT = {
     RATECHANGE: 'RateChange',
     // 是否暂停事件
     ISPAUSE: 'IsPause',
-
+    // 缓冲事件
+    WAITING: 'Waiting',
+    // 是否可以播放事件
+    CANPLAY: 'CanPlay',
 
     // 是否隐藏工具栏
     ISHIDE: 'IsHide',
