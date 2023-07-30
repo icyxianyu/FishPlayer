@@ -1,4 +1,4 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import currentBar from "./currentbar";
@@ -13,11 +13,11 @@ class HoverContainer extends Component {
         this.initEventHub();
     }
     initEventHub() {
-        Component.eventHub.on(PLAY_EVENT.MOUSEMOVE, (x:string) => {
+        Store.onMouseMove((x:string)=>{
             this.element.style.display = 'block';
             this.element.style.left = x+'px';
         })
-        Component.eventHub.on(PLAY_EVENT.MOUSELEAVE, (isLeave:boolean) => {
+        Store.onMouseLeave((isLeave:boolean)=>{
             if(isLeave) {
                 this.element.style.display = 'none';
             }

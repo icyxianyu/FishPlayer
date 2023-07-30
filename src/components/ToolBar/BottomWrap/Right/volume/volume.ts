@@ -1,4 +1,4 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
@@ -28,15 +28,14 @@ class VolumeButton extends Component {
     initEvent() {
         this.element.addEventListener("click", () => {
             if (this.voice === 0) {
-                Component.eventHub.emit(PLAY_EVENT.SOUNDCHANGE, 100);
+                Store.emitSoundChange(100);
             } else {
-                Component.eventHub.emit(PLAY_EVENT.SOUNDCHANGE, 0);
+                Store.emitSoundChange(0);
             }
         });
     }
     initEventHub(){
-        Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE, (value: number) => {
-
+        Store.onSoundChange((value: number) => {
             this.element.innerHTML = "";
             if (value === 0) {
                 this.element.appendChild(this.vlomeoffbutton);

@@ -3,7 +3,8 @@ import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { pauseIcon, playIcon } from "@/constant";
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
+
 class PlayButton extends Component {
     play: SVGSVGElement;
     pause: SVGSVGElement;
@@ -21,11 +22,11 @@ class PlayButton extends Component {
 
     initEvent(){
         this.element.onclick = ()=>{
-            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,!this.player.paused);
+            Store.emitIsPause(!this.player.paused);
         }
     }
     initEventHub(){
-        Component.eventHub.on(PLAY_EVENT.ISPAUSE,(isPause:boolean)=>{
+        Store.onIsPause((isPause:boolean)=>{
             this.changeIcon(isPause);
         })
     }

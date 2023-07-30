@@ -1,23 +1,22 @@
 
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { toolbarHeight, toolbarPadding } from "@/constant/px";
 import { Player } from "@/page";
 import { Video } from "@/player/video";
-import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 import BottomWrap from "./BottomWrap";
 import TopWrap from "./TopWrap";
 
 class ToolBar extends Component {
 
-    constructor(container: HTMLElement, video: Video, Player: Player, options: playerOptions) {
+    constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, 'div', { class: 'video-toolbar' });
-        new TopWrap(this.element, video, Player, options);
-        new BottomWrap(this.element, video, Player, options);
+        new TopWrap(this.element, video, Player);
+        new BottomWrap(this.element, video, Player);
         this.initEventHub();
     }
     initEventHub() {
-        Component.eventHub.on(PLAY_EVENT.ISHIDE, (isShow:boolean) => {
+        Store.onIsHide((isShow: boolean) => {
             this.element.style.height = isShow ? `${toolbarHeight}px` : '0px';
             this.element.style.padding = isShow ? `${toolbarPadding}px` : '0px';
         })

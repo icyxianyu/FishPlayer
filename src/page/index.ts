@@ -1,7 +1,7 @@
 import Loading from "@/components/loading";
 import ToolBar from "@/components/ToolBar";
-import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
+import Store from "@/store";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 
@@ -25,12 +25,11 @@ class Player extends Component {
             el: this.element,
             url: this.options.url
         })
-        new ToolBar(this.element, video,this ,this.options);
+        new ToolBar(this.element, video, this);
         new Loading(this.element, video)
     }
     initEvent() {
-        Component.eventHub.emit(PLAY_EVENT.ISHIDE, true)
-
+        Store.emitIsHide(true);
         this.element.onmousemove = () => {
             this.changePasue();
         }
@@ -38,21 +37,21 @@ class Player extends Component {
         // 监听按键事件
         document.onkeydown = (e) => {
             if (e.code === 'Space') {
-                Component.eventHub.emit(PLAY_EVENT.ISPAUSE, !this.isPause);
+                Store.emitIsPause(!this.isPause);
             }else if(e.code === 'ArrowUp'){
-                Component.eventHub.emit(PLAY_EVENT.FIXEDSOUNDCHANGE,5);
+                Store.emitFixedSoundChange(5);
             }else if(e.code === 'ArrowDown'){
-                Component.eventHub.emit(PLAY_EVENT.FIXEDSOUNDCHANGE,-5);
+                Store.emitFixedSoundChange(-5);
             }else if(e.code === 'ArrowLeft'){
-                Component.eventHub.emit(PLAY_EVENT.FORWARD,-5);
+                Store.emitForward(-5);
             }else if(e.code === 'ArrowRight'){
-                Component.eventHub.emit(PLAY_EVENT.FORWARD,5);
+                Store.emitForward(5);
             }
         }
     }
 
     initEventHub() {
-        Component.eventHub.on(PLAY_EVENT.ISPAUSE, (isPause: boolean) => {
+        Store.onIsPause((isPause: boolean) => {
             this.isPause = isPause;
             this.changePasue();
         })
@@ -60,10 +59,10 @@ class Player extends Component {
 
     changePasue(){
         clearTimeout(this.timer);
-        Component.eventHub.emit(PLAY_EVENT.ISHIDE, true);
+        Store.emitIsHide(true);
         if(this.isPause) return;
         this.timer = setTimeout(() => {
-            Component.eventHub.emit(PLAY_EVENT.ISHIDE, false);
+            Store.emitIsHide(false);
         }, 2000)
     }
 }

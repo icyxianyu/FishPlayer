@@ -1,4 +1,4 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 
@@ -9,7 +9,7 @@ class RateChange extends Component {
         this.initEventHub();
     }
     initEventHub() {
-        Component.eventHub.on(PLAY_EVENT.RATECHANGE, (rate: number) => {
+        Store.onRateChange((rate: number) => {
             if(rate === 1){
                 this.element.innerHTML = `倍数`;
             }else{

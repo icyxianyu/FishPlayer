@@ -1,7 +1,7 @@
-import PLAY_EVENT from "@/constant/event";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import { timeToMinutes } from "@/utils/time";
+import Store from "@/store";
 
 class Current extends Component{
     player: HTMLVideoElement;
@@ -12,7 +12,7 @@ class Current extends Component{
         this.initEventHub();
     }
     initEventHub(){
-        Component.eventHub.on(PLAY_EVENT.TIMEUPDATE,(time:string)=>{
+        Store.onTimeUpdate((time:string)=>{
             this.element.innerHTML = timeToMinutes(time);
         })
     }

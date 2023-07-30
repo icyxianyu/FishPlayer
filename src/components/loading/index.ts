@@ -1,4 +1,4 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import Loading from "./loading";
@@ -13,7 +13,7 @@ class LoadingContainer extends Component {
     }
 
     initEventHub(){
-        Component.eventHub.on(PLAY_EVENT.WAITING,(value:boolean)=>{
+        Store.onWaiting((value:boolean)=>{
             if(value){
                 this.element.style.display = 'flex';
             }else{

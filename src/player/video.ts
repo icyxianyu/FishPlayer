@@ -1,96 +1,104 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 
 class Video extends Component {
     options: playerOptions;
     player: HTMLVideoElement;
-    
+
     constructor(options: playerOptions) {
-        super(options.el,'video',{class:'fish-video'});
+        super(options.el, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
         this.init();
         this.initEvent();
         this.initEventHub();
     }
-    init(){
+    init() {
         if (this.element instanceof HTMLVideoElement) {
             this.element.src = this.options.url;
         }
     }
-    initEvent(){
-    
+    initEvent() {
+
         //监听播放事件
-        this.player.ontimeupdate = () =>{
-            Component.eventHub.emit(PLAY_EVENT.TIMEUPDATE,this.player.currentTime);
+        this.player.ontimeupdate = () => {
+            Store.emitTimeUpdate(this.player.currentTime);
         }
-    
+
         //监听点击事件
-        this.player.onclick = () =>{
-            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,!this.player.paused);
+        this.player.onclick = () => {
+            Store.emitIsPause(!this.player.paused);
         }
 
         //播放结束
-        this.player.onended = () =>{
-            Component.eventHub.emit(PLAY_EVENT.ISPAUSE,true);
+        this.player.onended = () => {
+            Store.emitIsPause(true);
         }
 
         // 加载事件
-        this.player.onwaiting = (en:Event):any =>{
-            Component.eventHub.emit(PLAY_EVENT.WAITING,true);
+        this.player.onwaiting = (en: Event): any => {
+            Store.emitWaiting(true);
         }
-
         // 加载完成事件
-        this.player.onplaying = (en:Event):any =>{
-            Component.eventHub.emit(PLAY_EVENT.WAITING,false);
+        this.player.onplaying = (en: Event): any => {
+            Store.emitWaiting(false);
         }
 
-        
-        this.element.oncanplay = (en:Event):any =>{
-            Component.eventHub.emit(PLAY_EVENT.CANPLAY,true);
+        // 可以播放事件
+        this.element.oncanplay = (en: Event): any => {
+            Store.emitCanPlay(true);
         }
+
+        this.player.onseeking = (en: Event): any => {
+            Store.emitWaiting(true);
+        }
+
+        this.player.onseeked = (en: Event): any => {
+            Store.emitWaiting(false);
+        }
+
     }
 
-    initEventHub(){
-    
-        Component.eventHub.on(PLAY_EVENT.SOUNDCHANGE,(value:number)=>{
-            this.player.volume = value/100;
-        })
+    initEventHub() {
 
-        Component.eventHub.on(PLAY_EVENT.FIXEDSOUNDCHANGE,(value:number)=>{
+        Store.onSoundChange((value: number) => {
+            this.player.volume = value / 100;
+        })
+    
+        Store.onFixedSoundChange((value: number) => {
             let volume = this.player.volume * 100 + value;
 
-            if(volume > 100){
+            if (volume > 100) {
                 volume = 100;
-            }else if(volume < 0){
+            } else if (volume < 0) {
                 volume = 0;
             }
-
-            Component.eventHub.emit(PLAY_EVENT.SOUNDCHANGE,volume);
+            Store.emitSoundChange(volume);
         })
-    
-        Component.eventHub.on(PLAY_EVENT.MOUSECLICK,(persent:number)=>{
+
+        Store.onMouseClick((persent: number) => {
             this.player.currentTime = this.player.duration * persent;
         })
 
-        Component.eventHub.on(PLAY_EVENT.RATECHANGE,(rate:number)=>{
+        Store.onRateChange((rate: number) => {
             this.player.playbackRate = rate;
         })
 
-        Component.eventHub.on(PLAY_EVENT.ISPAUSE,(isPause:boolean)=>{
-            if(isPause){
+        Store.onIsPause((isPause: boolean) => {
+            if (isPause) {
                 this.player.pause();
-            }else{
+            } else {
                 this.player.play();
             }
         })
 
-        Component.eventHub.on(PLAY_EVENT.FORWARD,(value:number)=>{
+        Store.onForward((value: number) => {
             this.player.currentTime += value;
-        })
+        }) 
 
-    }  
+
+    }
 }
 
 export { Video } 

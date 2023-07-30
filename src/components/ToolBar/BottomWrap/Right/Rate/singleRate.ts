@@ -1,4 +1,4 @@
-import PLAY_EVENT from "@/constant/event";
+import Store from "@/store";
 import Component from "@/utils/createElement";
 
 class SingleRate extends Component{
@@ -10,15 +10,14 @@ class SingleRate extends Component{
     }
     initEvent(speed:number){
         this.element.onclick = ()=>{
-            Component.eventHub.emit(PLAY_EVENT.RATECHANGE,speed);
+            Store.emitRateChange(speed);
         }
     }
     initEventHub(speed:number){
         if(speed === 1){
             this.element.classList.add('active');
         }
-
-        Component.eventHub.on(PLAY_EVENT.RATECHANGE,(rate:number)=>{
+        Store.onRateChange((rate:number)=>{
             if(rate === speed){
                 this.element.classList.add('active');
             }else{
