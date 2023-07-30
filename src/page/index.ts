@@ -21,6 +21,8 @@ class Player extends Component {
         this.init();
         this.initEvent();
         this.initEventHub();
+
+        return this.proxyEvent();
     }
     init() {
         const { width, height, isShowControl } = this.options;
@@ -28,7 +30,7 @@ class Player extends Component {
             this.element.style.width = width + 'px';
         if (height)
             this.element.style.height = height + 'px';
-    
+
 
         if (isShowControl) {
             new ToolBar(this.element, this.video, this);
@@ -72,6 +74,27 @@ class Player extends Component {
             Store.emitIsHide(false);
         }, 2000)
     }
+
+    proxyEvent() {
+        return new Proxy(this, {
+            get: (target, prop) => {
+                if (prop in target.video.element) {
+                    return (target.video.element as any)[prop];
+                } else {
+                    return (target as any)[prop];
+                }
+            },
+            set: (target, prop, value) => {
+                if (prop in target.video.element) {
+                    (target.video.element as any)[prop] = value;
+                } else {
+                    (target as any)[prop] = value;
+                }
+                return true;
+            }
+        })
+    }
 }
+
 
 export { Player };
