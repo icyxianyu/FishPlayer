@@ -11,9 +11,21 @@ class ToolBar extends Component {
 
     constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, 'div', { class: 'video-toolbar' });
-        new TopWrap(this.element, video, Player);
+        const { progress = true } = video.options?.control ?? {};
+        if (progress)
+            new TopWrap(this.element, video, Player);
+
         new BottomWrap(this.element, video, Player);
+
         this.initEventHub();
+        this.initEvent(video)
+    }
+    initEvent(video: Video) {
+        this.element.style.display = 'none';
+
+        video.element.onloadedmetadata = () => {
+            this.element.style.display = 'flex';
+        }
     }
     initEventHub() {
         Store.onIsHide((isShow: boolean) => {

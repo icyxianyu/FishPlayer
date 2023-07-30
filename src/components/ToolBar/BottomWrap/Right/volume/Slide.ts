@@ -2,7 +2,7 @@ import { Video } from "@/player/video";
 import Component from "@/utils/createElement";
 import Modal from "@/utils/model";
 import Store from "@/store";
-class VolumeSlider extends Modal  {
+class VolumeSlider extends Modal {
     constructor(container: HTMLElement, video: Video) {
         super(container, "input",
             {
@@ -15,7 +15,7 @@ class VolumeSlider extends Modal  {
         this.initStyle();
         this.initEvent();
         this.initEventHub();
-
+        this.initOptions(video);
     }
     initStyle() {
         this.element.style.top = "-300%";
@@ -24,15 +24,22 @@ class VolumeSlider extends Modal  {
     }
     initEventHub() {
         Store.onSoundChange((value: number) => {
-            (this.CurrentElement as HTMLInputElement).value =  value.toString();
+            (this.CurrentElement as HTMLInputElement).value = value.toString();
         })
     }
     initEvent() {
         this.CurrentElement.addEventListener("input", (event) => {
             const target = event.target as HTMLInputElement;
             Store.emitSoundChange(parseInt(target.value));
-        });    
+        });
     }
+    initOptions(video: Video) {
+        const { initVolumne } = video.options;
+        if (initVolumne !== undefined) {
+            Store.emitSoundChange(initVolumne);
+        }
+    }
+
 }
 
 export default VolumeSlider;

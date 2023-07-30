@@ -6,8 +6,11 @@ import TimeBar from "./time/time";
 class LeftContainer extends Component {
     constructor(container: HTMLElement, video: Video) {
         super(container, "div", { class: "toolbox-container left" });
-        new PlayButton(this.element, video);
-        new TimeBar(this.element, video);
+        const { pause = true, time = true} = video.options?.control ?? {};
+        if (pause)
+            new PlayButton(this.element, video);
+        if (time)
+            new TimeBar(this.element, video);
     }
 }
 

@@ -7,12 +7,19 @@ class RateChange extends Component {
         super(container, 'div', { class: 'RateChange' });
         this.element.innerHTML = `倍数`;
         this.initEventHub();
+        this.init(video);
     }
+    init(video: Video) {
+        const { initRate } = video.options;
+        if (initRate)
+            Store.emitRateChange(initRate);
+    }
+
     initEventHub() {
         Store.onRateChange((rate: number) => {
-            if(rate === 1){
+            if (rate === 1) {
                 this.element.innerHTML = `倍数`;
-            }else{
+            } else {
                 this.element.innerHTML = `${rate} x`;
             }
         })

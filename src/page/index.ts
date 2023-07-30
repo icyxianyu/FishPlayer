@@ -10,9 +10,11 @@ class Player extends Component {
     options: playerOptions;
     timer: any;
     isPause: boolean;
+    video: Video;
 
     constructor(options: playerOptions) {
         super(options.el, 'div', { class: 'video-container' });
+        this.video = new Video(this.element, options);
         this.options = options;
         this.timer = null;
         this.isPause = true;
@@ -21,12 +23,17 @@ class Player extends Component {
         this.initEventHub();
     }
     init() {
-        const video = new Video({
-            el: this.element,
-            url: this.options.url
-        })
-        new ToolBar(this.element, video, this);
-        new Loading(this.element, video)
+        const { width, height, isShowControl } = this.options;
+        if (width)
+            this.element.style.width = width + 'px';
+        if (height)
+            this.element.style.height = height + 'px';
+    
+
+        if (isShowControl) {
+            new ToolBar(this.element, this.video, this);
+        }
+        new Loading(this.element, this.video)
     }
     initEvent() {
         Store.emitIsHide(true);
@@ -38,13 +45,13 @@ class Player extends Component {
         document.onkeydown = (e) => {
             if (e.code === 'Space') {
                 Store.emitIsPause(!this.isPause);
-            }else if(e.code === 'ArrowUp'){
+            } else if (e.code === 'ArrowUp') {
                 Store.emitFixedSoundChange(5);
-            }else if(e.code === 'ArrowDown'){
+            } else if (e.code === 'ArrowDown') {
                 Store.emitFixedSoundChange(-5);
-            }else if(e.code === 'ArrowLeft'){
+            } else if (e.code === 'ArrowLeft') {
                 Store.emitForward(-5);
-            }else if(e.code === 'ArrowRight'){
+            } else if (e.code === 'ArrowRight') {
                 Store.emitForward(5);
             }
         }
@@ -57,10 +64,10 @@ class Player extends Component {
         })
     }
 
-    changePasue(){
+    changePasue() {
         clearTimeout(this.timer);
         Store.emitIsHide(true);
-        if(this.isPause) return;
+        if (this.isPause) return;
         this.timer = setTimeout(() => {
             Store.emitIsHide(false);
         }, 2000)

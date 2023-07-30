@@ -10,10 +10,19 @@ import Volume from "./volume";
 class RightContainer extends Component {
     constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, "div", { class: "toolbox-container right" });
-        new Volume(this.element, video);
-        new Rate(this.element, video);
-        new ScreenShot(this.element, video)
-        new FullScreen(this.element, video, Player);
+        const { rate = true,
+            volumne = true,
+            fullScreen = true,
+            screenShot = true }
+            = video.options?.control ?? {};
+        if (volumne)
+            new Volume(this.element, video);
+        if (rate)
+            new Rate(this.element, video);
+        if (screenShot)
+            new ScreenShot(this.element, video)
+        if (fullScreen)
+            new FullScreen(this.element, video, Player);
     }
 }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,25 +9,38 @@
     <script src="./dist/player.min.umd.js"></script>
     <title>FishPlayer</title>
     <style>
-        body{
-            margin:0;
-            padding:0;
-        }
-        .video{
-            width:700px;
-            height:500px;
+        body {
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
+
 <body>
     <div class="video"></div>
     <script>
-        window.onload = function(){
+        window.onload = function () {
             new Player({
-                el:document.querySelector('.video'),
-                url:"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+                el: document.querySelector('.video'),
+                url: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+                isShowControl: true,
+                width: 500,
+                height: 300,
+                initVolumne: 0,
+                rate: [0.5, 1, 2, 3],
+                initRate: 0.5,
+                control: {
+                    pause:false,
+                    time: false,
+                    fullScreen: false,
+                    rate: false,
+                    volumne: false,
+                    progress:false,
+                    screenShot:false
+                }
             })
         }
     </script>
 </body>
+
 </html>

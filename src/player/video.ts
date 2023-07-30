@@ -3,16 +3,19 @@ import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
 
 class Video extends Component {
-    options: playerOptions;
     player: HTMLVideoElement;
+    options: playerOptions;
 
-    constructor(options: playerOptions) {
-        super(options.el, 'video', { class: 'fish-video' });
+    constructor(container: HTMLElement,options: playerOptions) {
+        super(container, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
+    
         this.init();
         this.initEvent();
         this.initEventHub();
+        this.initOption();
+
     }
     init() {
         if (this.element instanceof HTMLVideoElement) {
@@ -44,6 +47,15 @@ class Video extends Component {
         this.player.onplaying = (en: Event): any => {
             Store.emitWaiting(false);
         }
+
+        //初次加载获取视频信息事件
+        this.player.onloadedmetadata = (en: Event): any => {
+            Store.emitWaiting(false);
+        }
+        this.player.onloadeddata = (en: Event): any => {
+            Store.emitWaiting(false);
+        }
+
 
         // 可以播放事件
         this.element.oncanplay = (en: Event): any => {
@@ -96,8 +108,18 @@ class Video extends Component {
         Store.onForward((value: number) => {
             this.player.currentTime += value;
         }) 
+    }
 
+    initOption(){
+        const { initVolumne, initRate } = this.options;
 
+        if (initVolumne !== undefined) {
+            Store.emitSoundChange(initVolumne);
+        }
+
+        if (initRate) {
+            Store.emitRateChange(initRate);
+        }
     }
 }
 

@@ -1,10 +1,11 @@
 export type Control = {
     pause?:boolean;
     time?:boolean;
-    sound?:boolean;
+    volumne?:boolean;
     rate?:boolean;
     fullScreen?:boolean;
-
+    progress?:boolean;
+    screenShot?:boolean;
 }
 
 export type playerOptions = {
@@ -13,13 +14,11 @@ export type playerOptions = {
     width?: number;
     height?: number;
     initVolumne?: number;
-    initRate?: number;
     theme?: string;
-    //倍数
     rate?: number[];
+    initRate?: number;
     isShowControl?: boolean;
     control?: Control;
-
 
 }
 
