@@ -1,16 +1,18 @@
 import Store from "@/store";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
+import download from "@/utils/httpRequest/download";
 
 class Video extends Component {
     player: HTMLVideoElement;
     options: playerOptions;
+    mediaSource!: MediaSource;
 
-    constructor(container: HTMLElement,options: playerOptions) {
+    constructor(container: HTMLElement, options: playerOptions) {
         super(container, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
-    
+        this.test();
         this.init();
         this.initEvent();
         this.initEventHub();
@@ -18,9 +20,8 @@ class Video extends Component {
 
     }
     init() {
-        if (this.element instanceof HTMLVideoElement) {
-            this.element.src = this.options.url;
-        }
+        const { stream, url } = this.options;
+        this.player.src = url;
     }
     initEvent() {
 
@@ -77,7 +78,7 @@ class Video extends Component {
         Store.onSoundChange((value: number) => {
             this.player.volume = value / 100;
         })
-    
+
         Store.onFixedSoundChange((value: number) => {
             let volume = this.player.volume * 100 + value;
 
@@ -107,10 +108,10 @@ class Video extends Component {
 
         Store.onForward((value: number) => {
             this.player.currentTime += value;
-        }) 
+        })
     }
 
-    initOption(){
+    initOption() {
         const { initVolumne, initRate } = this.options;
 
         if (initVolumne !== undefined) {
@@ -120,6 +121,17 @@ class Video extends Component {
         if (initRate) {
             Store.emitRateChange(initRate);
         }
+    }
+
+    test() {
+        const downloader = new download("https://novaex.cc/fireworks.mp4")
+        downloader.init({
+            chunkSize : 1024 * 1024 * 1,
+            chunkStart : 0,
+            totalLength: 1024 * 1024 * 1,
+            time: 1,
+        });
+        downloader.start();
     }
 }
 

@@ -22,22 +22,23 @@
         window.onload = function () {
           const player = new Player({
                 el: document.querySelector('.video'),
-                url: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
+                url: "https://novaex.cc/fireworks.mp4",
+                stream:true,
                 isShowControl: true,
                 width: 500,
                 height: 300,
                 initVolumne: 0,
                 rate: [0.5, 1, 2, 3],
                 initRate: 0.5,
-                control: {
-                    pause:false,
-                    time: false,
-                    fullScreen: false,
-                    rate: false,
-                    volumne: false,
-                    progress:false,
-                    screenShot:false
-                }
+                // control: {
+                //     pause:false,
+                //     time: false,
+                //     fullScreen: false,
+                //     rate: false,
+                //     volumne: false,
+                //     progress:false,
+                //     screenShot:false
+                // }
             })
         }
     </script>
