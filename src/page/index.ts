@@ -5,6 +5,7 @@ import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
+import danmaku from "@/components/danmaku";
 
 class Player extends Component {
 
@@ -34,6 +35,7 @@ class Player extends Component {
 
 
         if (isShowControl) {
+            new danmaku(this.element, this.video, this)
             new BottomToolBar(this.element, this.video, this);
             new TopToolBar(this.element, this.video, this)
         }
