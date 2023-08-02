@@ -1,8 +1,7 @@
+import mp4Player from "@/mp4/mp4Play";
 import Store from "@/store";
 import { playerOptions } from "@/types/player";
 import Component from "@/utils/createElement";
-import download from "@/utils/httpRequest/download";
-
 class Video extends Component {
     player: HTMLVideoElement;
     options: playerOptions;
@@ -12,7 +11,6 @@ class Video extends Component {
         super(container, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
-        this.test();
         this.init();
         this.initEvent();
         this.initEventHub();
@@ -21,7 +19,10 @@ class Video extends Component {
     }
     init() {
         const { stream, url } = this.options;
-        this.player.src = url;
+        if (stream) {
+            new mp4Player(url, this.player);
+        } else
+            this.player.src = url;
     }
     initEvent() {
 
@@ -121,17 +122,6 @@ class Video extends Component {
         if (initRate) {
             Store.emitRateChange(initRate);
         }
-    }
-
-    test() {
-        const downloader = new download("https://novaex.cc/fireworks.mp4")
-        downloader.init({
-            chunkSize : 1024 * 1024 * 1,
-            chunkStart : 0,
-            totalLength: 1024 * 1024 * 1,
-            time: 1,
-        });
-        downloader.start();
     }
 }
 

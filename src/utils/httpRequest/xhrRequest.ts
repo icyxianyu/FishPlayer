@@ -37,7 +37,7 @@ class xhrRequest {
 
         xhr.onload = function (event) {
             // 请求成功完成时触发，类似于 onreadystatechange 的处理，但仅当请求成功时才触发
-            success && success.call(xhr, event);
+            success && success.call(xhr, xhr.response);
         };
 
         xhr.onerror = function (event) {

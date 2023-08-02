@@ -10,7 +10,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "mp4box": "^0.5.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.8",
     "@babel/preset-env": "^7.22.7",
