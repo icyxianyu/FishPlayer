@@ -1,9 +1,10 @@
 import Loading from "@/components/loading";
-import ToolBar from "@/components/ToolBar";
+import BottomToolBar from "@/components/BottomToolBar";
+import TopToolBar from "@/components/TopToolBar";
 import { Video } from "@/player/video";
-import Store from "@/store";
+import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
-import Component from "@/utils/createElement";
+import { Component } from "@/utils/createElement";
 
 class Player extends Component {
 
@@ -33,7 +34,8 @@ class Player extends Component {
 
 
         if (isShowControl) {
-            new ToolBar(this.element, this.video, this);
+            new BottomToolBar(this.element, this.video, this);
+            new TopToolBar(this.element, this.video, this)
         }
         new Loading(this.element, this.video)
     }

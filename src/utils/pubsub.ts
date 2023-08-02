@@ -1,4 +1,4 @@
-class EventHub {
+export class EventHub {
     protected cache: { [key: string]: Array<Function> } = {};
 
     public on(eventName: string, fn: Function) {
@@ -16,4 +16,3 @@ class EventHub {
         this.cache[eventName].splice(index, 1);
     }
 }
-export default EventHub;

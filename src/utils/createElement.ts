@@ -1,6 +1,6 @@
 import { classProps } from "../types/player";
 
-class Component {
+export class Component {
     element: HTMLElement | HTMLVideoElement | HTMLImageElement;
     constructor(container: HTMLElement, type: string, props: classProps = {}) {
         this.element = document.createElement(type);
@@ -10,5 +10,3 @@ class Component {
         container.appendChild(this.element);
     }
 }
-
-export default Component;

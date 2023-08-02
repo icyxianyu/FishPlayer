@@ -20,16 +20,42 @@
     <div class="video"></div>
     <script>
         window.onload = function () {
-          const player = new Player({
+            class Test extends Player.Component {
+                constructor(container, video, player) {
+                    super(container, 'button', {
+                        class: 'test toolButton'
+                    });
+                    this.element.innerHTML = '用户自定义组件';
+                    this.element.style.color = 'red';
+                    this.play = video.element;
+                    this.initEvent();
+                }
+                initEvent(){
+                    let init = true;
+                    this.element.addEventListener('click',()=>{
+                        Player.Store.emitIsPause(!init);
+                        init = !init;
+                    })
+                }
+
+            }
+
+            const player = new Player.default({
                 el: document.querySelector('.video'),
                 url: "https://novaex.cc/fireworks.mp4",
-                stream:false,
+                title: '测试视频',
+                stream: false,
                 isShowControl: true,
-                width: 500,
-                height: 300,
+                width: 700,
+                height: 500,
                 initVolumne: 0,
                 rate: [0.5, 1, 2, 3],
                 initRate: 0.5,
+                components: {
+                    left: [Test],
+                    right: [Test],
+                    top: [Test],
+                }
                 // control: {
                 //     pause:false,
                 //     time: false,

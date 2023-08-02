@@ -1,7 +1,7 @@
-import Component from "./createElement";
+import { Component } from "./createElement";
 import { classProps } from "../types/player";
 
-class Modal extends Component {
+export class Modal extends Component {
     container: HTMLElement;
     timer!: NodeJS.Timeout;
     time: number;
@@ -48,4 +48,3 @@ class Modal extends Component {
         }
     }
 }
-export default Modal;

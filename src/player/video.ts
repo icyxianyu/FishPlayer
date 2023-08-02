@@ -1,7 +1,7 @@
 import mp4Player from "@/mp4/mp4Play";
-import Store from "@/store";
+import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
-import Component from "@/utils/createElement";
+import { Component } from "@/utils/createElement";
 class Video extends Component {
     player: HTMLVideoElement;
     options: playerOptions;
