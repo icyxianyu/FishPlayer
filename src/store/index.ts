@@ -116,4 +116,12 @@ export class Store {
         this.eventHub.on(PLAY_EVENT.FIXEDSOUNDCHANGE, fn);
     }
 
+    // 弹幕显示事件
+    public static emitDanmu(isShow: boolean) {
+        this.eventHub.emit(PLAY_EVENT.DANMU, isShow);
+    }
+    public static onDanmu(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.DANMU, fn);
+    }
+
 }

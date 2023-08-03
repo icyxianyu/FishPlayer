@@ -30,6 +30,9 @@ const PLAY_EVENT = {
     FORWARD: 'Forward',
     // 固定声音改变事件
     FIXEDSOUNDCHANGE: 'FixedSoundChange',
+
+    // 弹幕事件
+    DANMU: 'Danmu',
 }
 
 export default PLAY_EVENT;

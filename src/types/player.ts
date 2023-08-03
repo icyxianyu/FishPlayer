@@ -1,4 +1,10 @@
-import { Component } from "@/utils/createElement";
+// 继承自fetch接口第二个参数
+export interface danmakuOptions extends RequestInit {
+    url?: string;
+    interval?: number;
+    data: Record<string, any>;
+}
+
 
 export type Control = {
     pause?: boolean;
@@ -31,6 +37,7 @@ export type playerOptions = {
     isShowControl?: boolean;
     control?: Control;
     components?: components;
+    danmaku?: danmakuOptions;
 }
 
 export type classProps = {
