@@ -11,9 +11,9 @@ class PlayButton extends Component {
     player: HTMLVideoElement;
 
     constructor(container: HTMLElement, video: Video) {
-        super(container, "div", { class: "play-button icon" });
-        this.play = createSVG(playIcon);
-        this.pause = createSVG(pauseIcon);
+        super(container, "div", { class: "toolButton play-button icon" });
+        this.play = createSVG(playIcon, '0 -2 ,24,24');
+        this.pause = createSVG(pauseIcon, '0 -2 ,24,24');
         this.player = video.element as HTMLVideoElement;
         this.initEvent();
         this.initEventHub();

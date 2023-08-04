@@ -5,7 +5,7 @@ import VolumeButton from "./volume";
 
 class volume extends Component {
     constructor(container: HTMLElement, video: Video) {
-        super(container, "div", { class: "volume toolButton" });
+        super(container, "div", { class: "toolButton volume" });
         new VolumeButton(this.element, video);
         new VolumeSlider(this.element, video);
     }

@@ -138,6 +138,9 @@ class danmaku extends Component {
                         }
                         this.appendElement(arr);
                     })
+                    .catch((err) => {
+                        console.log(err);
+                    })
 
             } else {
                 let arr = [];

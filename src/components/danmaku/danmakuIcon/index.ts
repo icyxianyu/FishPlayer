@@ -7,7 +7,7 @@ class Danmaku extends Component {
     svg1: SVGSVGElement;
     svg2: SVGSVGElement;
     constructor(container: HTMLElement) {
-        super(container, 'div', { class: 'danmakuIcon icon' });
+        super(container, 'div', { class: 'toolButton danmakuIcon icon' });
         this.isShow = true;
         this.svg1 = createSVG(danmakuPath$1);
         this.svg2 = createSVG(danmakuPath$2);

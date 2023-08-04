@@ -7,7 +7,7 @@ class TimeBar extends Component {
     player: HTMLVideoElement;
     video: Video;
     constructor(container: HTMLElement, video: Video) {
-        super(container, "div", { class: "time-bar" });
+        super(container, "div", { class: "toolButton time-bar" });
         this.video = video;
         this.player = video.element as HTMLVideoElement;
         this.init();

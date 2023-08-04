@@ -7,10 +7,10 @@ import { createImage } from "@/utils/screenshot";
 class ScreenShot extends Component {
     video: HTMLVideoElement;
     constructor(container: HTMLElement, video: Video) {
-        super(container, 'div', { class: 'screenShot toolButton icon' });
+        super(container, 'div', { class: 'toolButton screenShot icon' });
         this.video = video.element as HTMLVideoElement;
 
-        this.element.appendChild(createSVG(screenshot));
+        this.element.appendChild(createSVG(screenshot, '-2 -2 24 24'));
         this.initEvent();
     }
     initEvent() {

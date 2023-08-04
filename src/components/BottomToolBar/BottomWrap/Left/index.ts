@@ -1,5 +1,4 @@
 
-import Danmaku from "@/components/danmaku/danmakuIcon";
 import { Player } from "@/page";
 import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
@@ -14,7 +13,7 @@ class LeftContainer extends Component {
             new PlayButton(this.element, video);
         if (time)
             new TimeBar(this.element, video);
-        new Danmaku(this.element);
+
 
         if (left)
             left.forEach((component) => {

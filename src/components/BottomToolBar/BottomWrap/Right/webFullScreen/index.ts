@@ -1,33 +1,29 @@
-import { fullScreenIcon, miniScreenIcon } from "@/constant";
+import { webFullScreen, outFullScreen } from "@/constant";
 import { Player } from "@/page";
 import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { enterFull, exitFull, FullHTMLElement } from "@/utils/full";
 
-class FullScreen extends Component {
-
-    FullScreenButton!: SVGSVGElement;
-    MiniScreenButton!: SVGSVGElement;
+class WebFullScreen extends Component {
     Player: Player;
-
+    MiniScreenButton!: SVGSVGElement;
+    FullScreenButton!: SVGSVGElement;
     constructor(container: HTMLElement, video: Video, Player: Player) {
-        super(container, "div", { class: "toolButton full-screen icon" });
+        super(container, "div", { class: "toolButton web-full-screen icon" });
         this.Player = Player;
         this.initIcon();
         this.initEvent();
     }
 
     initIcon() {
-        this.FullScreenButton = createSVG(fullScreenIcon, '-2 -2 24 24');
-        this.MiniScreenButton = createSVG(miniScreenIcon, '-2 -2 24 24');
-        this.element.appendChild(this.FullScreenButton);
+        this.FullScreenButton = createSVG(webFullScreen, '-2 -2 24 24');
+        this.MiniScreenButton = createSVG(outFullScreen, '-2 -2 24 24');
+        this.element.appendChild(this.FullScreenButton);    
     }
 
     initEvent() {
-        this.element.addEventListener("click", this.exchange.bind(this));
-        // 监听全屏事件
-        document.addEventListener("fullscreenchange", this.changeIcon.bind(this));
+
     }
 
     exchange() {
@@ -51,4 +47,4 @@ class FullScreen extends Component {
     }
 
 }
-export default FullScreen;
+export default WebFullScreen;

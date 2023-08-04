@@ -20,8 +20,8 @@ class VolumeButton extends Component {
     }
 
     initIcon() {
-        this.volumebutton = createSVG(volumeIcon);
-        this.vlomeoffbutton = createSVG(volumeOffIcon);
+        this.volumebutton = createSVG(volumeIcon, '0 -2 ,24,24');
+        this.vlomeoffbutton = createSVG(volumeOffIcon, '0 -2 ,24,24');
         this.element.appendChild(this.volumebutton);
     }
 
