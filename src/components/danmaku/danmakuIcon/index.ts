@@ -12,6 +12,9 @@ class Danmaku extends Component {
         this.svg1 = createSVG(danmakuPath$1);
         this.svg2 = createSVG(danmakuPath$2);
         this.element.appendChild(this.svg1);
+        this.element.appendChild(this.svg2);
+        this.svg2.style.display = "none";
+        this.createText("关闭弹幕");
         this.initEvent();
         this.initEventHub();
     }
@@ -25,11 +28,14 @@ class Danmaku extends Component {
     initEventHub() {
         Store.onDanmu((isShow: boolean) => {
             this.isShow = isShow;
-            this.element.innerHTML = "";
             if (isShow) {
-                this.element.appendChild(this.svg1);
+                this.svg2.style.display = "none";
+                this.svg1.style.display = "block";
+                this.changeText("打开弹幕");
             } else {
-                this.element.appendChild(this.svg2);
+                this.changeText("关闭弹幕");
+                this.svg1.style.display = "none";
+                this.svg2.style.display = "block";
             }
         })
     }

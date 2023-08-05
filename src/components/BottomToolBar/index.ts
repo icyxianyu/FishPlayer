@@ -6,12 +6,15 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import BottomWrap from "./BottomWrap";
 import TopWrap from "./TopWrap";
+import Message from "../message";
 
 class ToolBar extends Component {
 
     constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, 'div', { class: 'bottom-toolbar toolbar' });
         const { progress = true } = video.options?.control ?? {};
+        new Message(this.element, video, Player);
+
         if (progress)
             new TopWrap(this.element, video, Player);
 

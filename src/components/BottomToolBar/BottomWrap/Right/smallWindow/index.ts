@@ -13,6 +13,7 @@ class SmallWindow extends Component {
         super(container, "div", { class: "toolButton icon smallWindow" });
         this.video = video.element as HTMLVideoElement;
         this.Player = Player;
+        this.createText("画中画");
         if (PictureInPictureWindow) {
             this.element.appendChild(createSVG(smallWindow, '0 0 34 34'));
             this.initEvent();

@@ -19,31 +19,12 @@ class WebFullScreen extends Component {
     initIcon() {
         this.FullScreenButton = createSVG(webFullScreen, '-2 -2 24 24');
         this.MiniScreenButton = createSVG(outFullScreen, '-2 -2 24 24');
+        this.createText("网页全屏");
         this.element.appendChild(this.FullScreenButton);    
     }
 
     initEvent() {
 
-    }
-
-    exchange() {
-        this.element.innerHTML = "";
-        if (document.fullscreenElement) {
-            exitFull();
-            this.element.appendChild(this.FullScreenButton);
-        } else {
-            enterFull(this.Player.element as FullHTMLElement);
-            this.element.appendChild(this.MiniScreenButton);
-        }
-    }
-
-    changeIcon() {
-        this.element.innerHTML = "";
-        if (document.fullscreenElement) {
-            this.element.appendChild(this.MiniScreenButton);
-        } else {
-            this.element.appendChild(this.FullScreenButton);
-        }
     }
 
 }

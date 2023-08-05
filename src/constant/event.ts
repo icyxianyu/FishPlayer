@@ -33,6 +33,9 @@ const PLAY_EVENT = {
 
     // 弹幕事件
     DANMU: 'Danmu',
+
+    // 消息事件
+    MESSAGE: 'Message',
 }
 
 export default PLAY_EVENT;

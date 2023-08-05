@@ -8,6 +8,7 @@ class DanmakuSet extends Component {
         super(container, 'div', { class: 'toolButton danmakuSet icon' });
         this.svg = createSVG(danmakuSet);
         this.element.appendChild(this.svg);
+        this.createText("弹幕设置");
         this.initEvent();
         this.initEventHub();
     }

@@ -8,7 +8,7 @@ const svgNS = 'http://www.w3.org/2000/svg';
 */
 export const createSVG = (d: string[], viewBox = '0 0 24 24'): SVGSVGElement => {
     const svg = document.createElementNS(svgNS, 'svg')
-
+    
     svg.setAttribute('viewBox', viewBox)
     svg.setAttribute('style', 'width:100%; height: 100%;')
     d.forEach((item) => {

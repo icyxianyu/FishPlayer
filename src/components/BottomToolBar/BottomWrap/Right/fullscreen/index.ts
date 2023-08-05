@@ -1,6 +1,7 @@
 import { fullScreenIcon, miniScreenIcon } from "@/constant";
 import { Player } from "@/page";
 import { Video } from "@/player/video";
+import { Store } from "@/store";
 import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { enterFull, exitFull, FullHTMLElement } from "@/utils/full";
@@ -21,7 +22,10 @@ class FullScreen extends Component {
     initIcon() {
         this.FullScreenButton = createSVG(fullScreenIcon, '-2 -2 24 24');
         this.MiniScreenButton = createSVG(miniScreenIcon, '-2 -2 24 24');
+        this.createText("进入全屏");
         this.element.appendChild(this.FullScreenButton);
+        this.element.appendChild(this.MiniScreenButton);
+        this.MiniScreenButton.style.display = "none";
     }
 
     initEvent() {
@@ -31,24 +35,30 @@ class FullScreen extends Component {
     }
 
     exchange() {
-        this.element.innerHTML = "";
         if (document.fullscreenElement) {
             exitFull();
-            this.element.appendChild(this.FullScreenButton);
         } else {
             enterFull(this.Player.element as FullHTMLElement);
-            this.element.appendChild(this.MiniScreenButton);
         }
+        this.changeStyle();
     }
 
     changeIcon() {
-        this.element.innerHTML = "";
+        this.changeStyle()
+    }
+    changeStyle() {
         if (document.fullscreenElement) {
-            this.element.appendChild(this.MiniScreenButton);
+            this.FullScreenButton.style.display = "none";
+            this.MiniScreenButton.style.display = "block";
+            this.changeText("退出全屏");
+            Store.emitMessage("进入全屏");
         } else {
-            this.element.appendChild(this.FullScreenButton);
+            this.changeText("进入全屏");
+            Store.emitMessage("退出全屏");
+            this.FullScreenButton.style.display = "block";
+            this.MiniScreenButton.style.display = "none";
+
         }
     }
-
 }
 export default FullScreen;

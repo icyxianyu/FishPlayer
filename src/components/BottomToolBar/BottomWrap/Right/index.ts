@@ -6,6 +6,7 @@ import FullScreen from "./fullscreen";
 import Rate from "./Rate";
 import ScreenShot from "./screenshot";
 import SmallWindow from "./smallWindow";
+import VideoSet from "./videoSet";
 import Volume from "./volume";
 import WebFullScreen from "./webFullScreen";
 
@@ -28,11 +29,15 @@ class RightContainer extends Component {
             new Volume(this.element, video);
         if (rate)
             new Rate(this.element, video);
+        new VideoSet(this.element, video);
+
+
         if (screenShot)
             new ScreenShot(this.element, video)
         new SmallWindow(this.element, video, Player)
 
         new WebFullScreen(this.element, video, Player)
+
 
         if (fullScreen)
             new FullScreen(this.element, video, Player);

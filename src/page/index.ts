@@ -6,6 +6,7 @@ import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
 import danmaku from "@/components/danmaku";
+import Message from "@/components/message";
 
 class Player extends Component {
 
@@ -52,12 +53,16 @@ class Player extends Component {
             if (e.code === 'Space') {
                 Store.emitIsPause(!this.isPause);
             } else if (e.code === 'ArrowUp') {
+                Store.emitMessage('音量增加')
                 Store.emitFixedSoundChange(5);
             } else if (e.code === 'ArrowDown') {
+                Store.emitMessage('音量减少')
                 Store.emitFixedSoundChange(-5);
             } else if (e.code === 'ArrowLeft') {
+                Store.emitMessage('快退5s')
                 Store.emitForward(-5);
             } else if (e.code === 'ArrowRight') {
+                Store.emitMessage('快进5s')
                 Store.emitForward(5);
             }
         }

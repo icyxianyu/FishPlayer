@@ -124,4 +124,11 @@ export class Store {
         this.eventHub.on(PLAY_EVENT.DANMU, fn);
     }
 
+    public static emitMessage(message: string) {
+        this.eventHub.emit(PLAY_EVENT.MESSAGE, message);
+    }
+    public static onMessage(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.MESSAGE, fn);
+    }
+
 }

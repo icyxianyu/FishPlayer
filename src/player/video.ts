@@ -23,6 +23,7 @@ class Video extends Component {
             new mp4Player(url, this.player);
         } else
             this.player.src = url;
+        this.player.crossOrigin = 'anonymous';
     }
     initEvent() {
 
