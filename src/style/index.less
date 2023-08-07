@@ -58,6 +58,9 @@
             transform: translateY(-100%);
             color:#ccc;
             padding-left:5px;
+            .message-item{
+                
+            }
         }
         .bottomWrap{
             display: flex;
@@ -115,6 +118,10 @@
                     .modal{
                         padding: 1px;
                         position: absolute;
+                        left:50%;
+                        transform:translate(-50%,-80%);
+                        background-color:rgba(0,0,0,0.8);
+                        display: none;
                     }
                 }
                 .danmakuIcon{
@@ -299,4 +306,12 @@
         transition: all 0.5s;
         user-select: none;
     }
+}
+
+.web-fullscreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
 }
