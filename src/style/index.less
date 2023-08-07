@@ -117,12 +117,20 @@
                         width: 100%;
                     }
                     .modal{
-                        padding: 1px;
+                        padding:4px 8px;
                         position: absolute;
                         left:50%;
                         transform:translate(-50%,-80%);
-                        background-color:rgba(0,0,0,0.8);
+                        background-color:rgba(0, 0, 0, 0.5);
                         display: none;
+                        color:var(--styleColor);
+                        font-weight: lighter;
+                        font-size: 0.4em;
+                        .singleItem{
+                            display: flex;
+                            flex-direction: row;
+                            white-space: nowrap;
+                        }
                     }
                 }
                 .danmakuIcon{

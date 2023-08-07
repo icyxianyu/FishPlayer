@@ -116,6 +116,13 @@ export class Store {
         this.eventHub.on(PLAY_EVENT.FIXEDSOUNDCHANGE, fn);
     }
 
+    // 消息发送事件
+    public static emitMessage(message: string) {
+        this.eventHub.emit(PLAY_EVENT.MESSAGE, message);
+    }
+    public static onMessage(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.MESSAGE, fn);
+    }
     // 弹幕显示事件
     public static emitDanmu(isShow: boolean) {
         this.eventHub.emit(PLAY_EVENT.DANMU, isShow);
@@ -124,11 +131,23 @@ export class Store {
         this.eventHub.on(PLAY_EVENT.DANMU, fn);
     }
 
-    public static emitMessage(message: string) {
-        this.eventHub.emit(PLAY_EVENT.MESSAGE, message);
+
+    // 弹幕透明度改变事件
+    public static emitOpacityChange(opacity: string) {
+        this.eventHub.emit(PLAY_EVENT.OPACITY, opacity);
     }
-    public static onMessage(fn: Function) {
-        this.eventHub.on(PLAY_EVENT.MESSAGE, fn);
+    public static onOpacityChange(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.OPACITY, fn);
     }
+
+    // 弹幕显示区域改变事件
+    public static emitDanmuAreaChange(area: string) {
+        this.eventHub.emit(PLAY_EVENT.DANMUAREA, area);
+    }
+    public static onDanmuAreaChange(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.DANMUAREA, fn);
+    }
+
+    
 
 }

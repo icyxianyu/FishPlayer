@@ -1,10 +1,16 @@
+
+interface initOptions {
+    opacity?: number;
+    area?: number;
+}
+
 // 继承自fetch接口第二个参数
 export interface danmakuOptions extends RequestInit {
     url?: string;
     interval?: number;
     data: Record<string, any>;
+    initOptions?: initOptions;
 }
-
 
 export type Control = {
     pause?: boolean;

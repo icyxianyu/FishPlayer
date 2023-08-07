@@ -11,7 +11,7 @@ class CenterContainer extends Component {
         super(container, "div", { class: "toolbox-container center" });
         const { center } = video.options?.components ?? {};
         new Danmaku(this.element);
-        new DanmakuSet(this.element)
+        new DanmakuSet(this.element,video);
         if (center) {
             center.forEach((component) => {
                 new component(this.element, video, Player);

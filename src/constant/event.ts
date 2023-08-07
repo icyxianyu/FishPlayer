@@ -33,6 +33,11 @@ const PLAY_EVENT = {
 
     // 弹幕事件
     DANMU: 'Danmu',
+    // 弹幕透明度事件
+    OPACITY: 'Opacity',
+    // 弹幕显示事件
+    DANMUAREA: 'DanmuArea',
+
 
     // 消息事件
     MESSAGE: 'Message',

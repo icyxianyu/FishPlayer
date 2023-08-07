@@ -5,7 +5,8 @@ import { danmakuOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
 
 class danmaku extends Component {
-    trackNum: number = 20;
+    trackNum: number = 30;
+    opacity: string = '100%';
     danmakuPool: any[] = [];
     player: Player;
     dispPool: any[] = [];
@@ -19,13 +20,11 @@ class danmaku extends Component {
 
     constructor(container: HTMLElement, video: Video, player: Player) {
         super(container, "div", { class: "danmaku" });
-        this.video = video.element as HTMLVideoElement;
         const { danmaku } = video.options;
         this.danmakuOptions = danmaku;
         this.trackArray = new Array(this.trackNum).fill(true);
-
+        this.video = video.element as HTMLVideoElement;
         this.player = player;
-
         this.initAnimate();
         this.initEventHub();
         this.observer = new IntersectionObserver(
@@ -50,7 +49,6 @@ class danmaku extends Component {
         requestAnimationFrame(arr);
     }
 
-
     handleIntersction(entries: IntersectionObserverEntry[]) {
         entries.forEach((item: IntersectionObserverEntry) => {
             if (!item.isIntersecting) {
@@ -67,8 +65,6 @@ class danmaku extends Component {
         })
     }
 
-
-
     initEventHub() {
 
         Store.onIsPause((item: boolean) => {
@@ -81,10 +77,20 @@ class danmaku extends Component {
             this.setDanmaku(this.isPause, item);
         })
 
-
         Store.onWaiting((item: boolean) => {
             this.setDanmaku(this.isPause, this.isShow, item);
         });
+
+        Store.onOpacityChange((item: string) => {
+            this.opacity = item + '%';
+        });
+
+        Store.onDanmuAreaChange((item: string) => {
+            let arrLen = Math.floor
+                ((parseInt(item) / 100) * this.trackNum)
+            this.trackArray = new Array(arrLen).fill(true);
+        });
+
     }
 
     setDanmaku(isPause: boolean,
@@ -111,7 +117,6 @@ class danmaku extends Component {
             this.dispPool = [];
         }
     }
-
     // 请求数据
     inseret() {
         // 插入数据
@@ -155,7 +160,6 @@ class danmaku extends Component {
             }
         }, interval ?? 500)
     }
-
     // 插入弹幕 DOM， 包括弹幕池有数据和没有数据两种情况
     appendElement(arr: any[]) {
         arr.forEach((item: any) => {
@@ -170,7 +174,7 @@ class danmaku extends Component {
             danmu.style.display = "block";
             danmu.style.color = color;
             danmu.style.top = `${(100 / this.trackNum) * line}%`;
-
+            danmu.style.opacity = this.opacity.toString();
             danmu.setAttribute("data-line", line);
             danmu.style.left = "100%";
             danmu.innerHTML = text;
@@ -178,7 +182,6 @@ class danmaku extends Component {
             this.danmakuPool.push(danmu);
         });
     }
-
     // 获取弹幕轨道
     getTrack() {
         const trueIndexes: number[] = [];

@@ -33,10 +33,13 @@ class VolumeSlider extends Modal {
             Store.emitSoundChange(parseInt(target.value));
         });
     }
+
     initOptions(video: Video) {
         const { initVolumne } = video.options;
         if (initVolumne !== undefined) {
             Store.emitSoundChange(initVolumne);
+        } else{
+            Store.emitSoundChange(100);
         }
     }
 
