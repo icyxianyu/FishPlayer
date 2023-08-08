@@ -59,8 +59,9 @@ class danmaku extends Component {
             }
 
             if (item.intersectionRatio === 1) {
-                const line = (item.target as HTMLElement).getAttribute("data-line") ?? '0'
-                this.trackArray[parseInt(line)] = true;
+                const line = (item.target as HTMLElement).getAttribute("data-line") ?? '0';
+                if (this.trackArray.length > parseInt(line))
+                    this.trackArray[parseInt(line)] = true;
             }
         })
     }
@@ -190,8 +191,9 @@ class danmaku extends Component {
                 trueIndexes.push(index);
             }
         });
+        console.log(this.trackArray)
         if (trueIndexes.length === 0) {
-            return Math.floor(Math.random() * this.trackNum); // 如果没有找到值为 true 的元素，则返回 null
+            return Math.floor(Math.random() * this.trackNum); 
         }
         const randomIndex = Math.floor(Math.random() * trueIndexes.length);
         const selectedTrack = trueIndexes[randomIndex];
