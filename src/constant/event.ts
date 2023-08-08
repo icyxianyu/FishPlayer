@@ -45,6 +45,8 @@ const PLAY_EVENT = {
 
     // 比例事件
     SCALE: 'Scale',
+    // 视频循环事件
+    LOOP: 'Loop',
 }
 
 export default PLAY_EVENT;

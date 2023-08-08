@@ -157,6 +157,12 @@ export class Store {
     public static onScaleChange(fn: Function) {
         this.eventHub.on(PLAY_EVENT.SCALE, fn);
     }
-    
+    // 视频循环播放事件
+    public static emitLoopChange(isLoop: boolean) {
+        this.eventHub.emit(PLAY_EVENT.LOOP, isLoop);
+    }
+    public static onLoopChange(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.LOOP, fn);
+    }
 
 }

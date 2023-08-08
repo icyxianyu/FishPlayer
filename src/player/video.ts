@@ -132,6 +132,10 @@ class Video extends Component {
                 this.player.style.width = `${offsetHeight * 4 / 3}px`;
             }
         })
+
+        Store.onLoopChange((isLoop: boolean) => {
+            this.player.loop = isLoop;
+        })
     }
 
     initOption() {

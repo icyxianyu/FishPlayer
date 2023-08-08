@@ -71,13 +71,17 @@
                 display: flex;
                 font-weight: bold;
                 .videoSet{
+                    user-select: none;
+
                     .videoSetModal{
                         width:200px;
+                        display: flex;
+                        flex-direction: column;
+
                         .scale{
                             display: flex;
                             flex-direction: column;
                             white-space: nowrap;
-                            user-select: none;
                             &__select{
                                 display: flex;
                                 flex-direction: row;
@@ -96,6 +100,19 @@
                                     background-color: #00a1d6;
                                 }
                             }
+                        }
+                        .rollback{
+                            display: flex;
+                            flex-direction: row;
+                            &__checkbox{
+                                cursor: pointer;
+                            }
+                            &:hover{
+                                color:#00a1d6;    
+                            }
+                        }
+                        &>div{
+                            margin-bottom:5px;
                         }
                     }
 
