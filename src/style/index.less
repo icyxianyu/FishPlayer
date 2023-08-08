@@ -133,6 +133,7 @@
                 .Rate{
                     display:flex;
                     align-items: center;
+                    user-select: none;
                     .RateChange{
                         font-size: 12px;                        ;
                         color:var(--styleColor);
@@ -148,7 +149,7 @@
                     .menu{
                         padding:0 1em;
                         .singleRate{
-                            font-size: 0.5em;
+                            font-size: 1em;
                             font-weight: lighter;
                             color:var(--styleColor);
                             cursor: pointer;
@@ -178,7 +179,7 @@
                         display: none;
                         color:var(--styleColor);
                         font-weight: lighter;
-                        font-size: 0.4em;
+                        font-size: 1em;
                         .singleItem{
                             display: flex;
                             flex-direction: row;
@@ -262,7 +263,7 @@
             }
             .timebar{
                 position: absolute;
-                font-size:15px;
+                font-size:1em;
                 transform: translate(-25%,-250%);
                 background-color: #00000083;
                 padding:0 2px;
@@ -288,6 +289,7 @@
         left: 0;
         flex-direction: row;
         .title{
+            user-select: none;
             color:var(--styleColor);
             font-weight: bold;
             font-size: 1em;

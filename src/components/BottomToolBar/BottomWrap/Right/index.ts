@@ -16,7 +16,10 @@ class RightContainer extends Component {
         const { rate = true,
             volumne = true,
             fullScreen = true,
-            screenShot = true }
+            screenShot = true,
+            webFullScreen = true,
+            smallWindow = true,
+            setting = true }
             = video.options?.control ?? {};
         const { right } = video.options?.components ?? {};
         if (right) {
@@ -29,16 +32,14 @@ class RightContainer extends Component {
             new Volume(this.element, video);
         if (rate)
             new Rate(this.element, video);
-        new VideoSet(this.element, video);
-
-
+        if (setting)
+            new VideoSet(this.element, video);
         if (screenShot)
             new ScreenShot(this.element, video)
-        new SmallWindow(this.element, video, Player)
-
-        new WebFullScreen(this.element, video, Player)
-
-
+        if (smallWindow && !video.Env)
+            new SmallWindow(this.element, video, Player)
+        if (webFullScreen && !video.Env)
+            new WebFullScreen(this.element, video, Player)
         if (fullScreen)
             new FullScreen(this.element, video, Player);
     }

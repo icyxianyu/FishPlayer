@@ -2,15 +2,18 @@ import mp4Player from "@/mp4/mp4Play";
 import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
+import Env from "@/utils/Env";
 class Video extends Component {
     player: HTMLVideoElement;
     options: playerOptions;
     mediaSource!: MediaSource;
+    Env: boolean;
 
     constructor(container: HTMLElement, options: playerOptions) {
         super(container, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
+        this.Env = Env();
         this.init();
         this.initEvent();
         this.initEventHub();
@@ -32,9 +35,14 @@ class Video extends Component {
             Store.emitTimeUpdate(this.player.currentTime);
         }
 
-        //监听点击事件
-        this.player.onclick = () => {
-            Store.emitIsPause(!this.player.paused);
+        if (this.Env) {
+            this.player.ondblclick = () => {
+                Store.emitIsPause(!this.player.paused);
+            }
+        } else {
+            this.player.onclick = () => {
+                Store.emitIsPause(!this.player.paused);
+            }
         }
 
         //播放结束

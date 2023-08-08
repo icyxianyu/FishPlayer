@@ -11,9 +11,10 @@ import ProgressBar from "./ProgressBar";
 
 class TopWrap extends Component {
     isDrag: boolean | undefined;
+    Env: boolean;
     constructor(container: HTMLElement, video: Video, Player: Player) {
-
         super(container, 'div', { class: 'topWrap' });
+        this.Env = video.Env;
         new ProgressBar(this.element, video, Player);
         new CurrentButton(this.element, video, Player);
         new HoverContainer(this.element, video);
@@ -21,30 +22,57 @@ class TopWrap extends Component {
         this.initEventHub();
     }
     initEvent() {
-        this.element.onmousedown = (e: MouseEvent) => {
-            Store.emitIsDrag(true);
-        }
+        if (this.Env) {
+            let x: number, w: number;
+            this.element.addEventListener('touchstart', (e: Event) => {
+                const touchEvent = e as TouchEvent;
+                const offsetX = getOffSetX(touchEvent, this.element);
+                const { width } = this.element.getBoundingClientRect();
+                x = offsetX;
+                w = width;
+                Store.emitIsDrag(true);
+                Store.emitMouseLeave(false);
+            });
 
-        this.element.onmouseup = (e: MouseEvent) => {
-            this.changeCurrent(e);
-        }
+            this.element.addEventListener('touchmove', (e: Event) => {
+                const touchEvent = e as TouchEvent;
+                const offsetX = getOffSetX(touchEvent, this.element);
+                const { width } = this.element.getBoundingClientRect();
+                x = offsetX;
+                w = width;
+                Store.emitMouseMove(offsetX, width);
+            });
 
-        this.element.onmousemove = (e: MouseEvent) => {
-            const offsetX = getOffSetX(e, this.element)
-            const { width } = this.element.getBoundingClientRect();
-            Store.emitMouseMove(offsetX, width);
-        }
+            this.element.addEventListener('touchend', (e: Event) => {
+                Store.emitIsDrag(false);
+                Store.emitMouseClick(x / w);
+            });
 
-        this.element.onmouseenter = (e: MouseEvent) => {
-            Store.emitMouseLeave(false);
-        }
 
-        this.element.onmouseleave = (e: MouseEvent) => {
-            if (this.isDrag)
+        } else {
+            this.element.onmousedown = (e: MouseEvent) => {
+                Store.emitIsDrag(true);
+            }
+
+            this.element.onmouseup = (e: MouseEvent) => {
                 this.changeCurrent(e);
-            Store.emitMouseLeave(true);
-        }
+            }
 
+            this.element.onmousemove = (e: MouseEvent) => {
+                const offsetX = getOffSetX(e, this.element)
+                const { width } = this.element.getBoundingClientRect();
+                Store.emitMouseMove(offsetX, width);
+            }
+
+            this.element.onmouseenter = (e: MouseEvent) => {
+                Store.emitMouseLeave(false);
+            }
+            this.element.onmouseleave = (e: MouseEvent) => {
+                if (this.isDrag)
+                    this.changeCurrent(e);
+                Store.emitMouseLeave(true);
+            }
+        }
     }
     initEventHub() {
 
@@ -53,8 +81,9 @@ class TopWrap extends Component {
         })
     }
 
-    changeCurrent(e: MouseEvent) {
-        const offsetX = getOffSetX(e, this.element)
+    changeCurrent(e: MouseEvent | TouchEvent) {
+
+        const offsetX = getOffSetX(e, this.element);
         const { width } = this.element.getBoundingClientRect();
         Store.emitIsDrag(false);
         Store.emitMouseClick(offsetX / width);

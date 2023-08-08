@@ -7,26 +7,28 @@ import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
 import danmaku from "@/components/danmaku";
 import Message from "@/components/message";
-
+import Env from "@/utils/Env";
 class Player extends Component {
 
     options: playerOptions;
     timer: any;
     isPause: boolean;
     video: Video;
-
+    Env: boolean;
     constructor(options: playerOptions) {
         super(options.el, 'div', { class: 'video-container' });
         this.video = new Video(this.element, options);
         this.options = options;
         this.timer = null;
         this.isPause = true;
+        this.Env = Env();
         this.init();
         this.initEvent();
         this.initEventHub();
 
         return this.proxyEvent();
     }
+
     init() {
         const { width, height, isShowControl } = this.options;
         if (width)
@@ -44,8 +46,18 @@ class Player extends Component {
     }
     initEvent() {
         Store.emitIsHide(true);
-        this.element.onmousemove = () => {
-            this.changePasue();
+        if (this.Env) {
+            this.element.addEventListener('touchmove', () => {
+                this.changePasue();
+            })
+            this.element.addEventListener('click', () => {
+                this.changePasue();
+
+            })
+        } else {
+            this.element.addEventListener('mousemove', () => {
+                this.changePasue();
+            })
         }
 
         // 监听按键事件

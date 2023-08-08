@@ -20,6 +20,10 @@ export type Control = {
     fullScreen?: boolean;
     progress?: boolean;
     screenShot?: boolean;
+    danmu?: boolean;
+    setting?: boolean;
+    smallWindow?: boolean;
+    webFullScreen?: boolean;
 }
 
 export type components = {
