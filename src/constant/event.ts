@@ -47,6 +47,8 @@ const PLAY_EVENT = {
     SCALE: 'Scale',
     // 视频循环事件
     LOOP: 'Loop',
+    // 视频镜像事件
+    MIRROR: 'Mirror',
 }
 
 export default PLAY_EVENT;

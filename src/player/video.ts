@@ -136,6 +136,15 @@ class Video extends Component {
         Store.onLoopChange((isLoop: boolean) => {
             this.player.loop = isLoop;
         })
+
+        Store.onMirrorChange((isMirror: boolean) => {
+
+            if (isMirror) {
+                this.player.style.transform = 'translate(-50%, -50%) rotateY(180deg)';
+            } else {
+                this.player.style.transform = 'translate(-50%, -50%) rotateY(0deg)';
+            }
+        })
     }
 
     initOption() {

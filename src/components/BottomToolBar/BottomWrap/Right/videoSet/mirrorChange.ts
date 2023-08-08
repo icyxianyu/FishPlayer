@@ -1,30 +1,30 @@
 import { Store } from "@/store";
 import { Component } from "@/utils";
 
-class Rollback extends Component {
+class Mirror extends Component {
     checkbox!: HTMLInputElement;
     constructor(container: HTMLElement) {
-        super(container, 'div', { class: 'rollback set' })
+        super(container, 'div', { class: 'mirror set' })
         this.init();
     }
     init() {
-        let text = new Component(this.element, 'label', { class: 'set__text' ,for:"loop" }).element;
-        text.innerHTML = '洗脑循环'
+        let text = new Component(this.element, 'label', { class: 'set__text', for: "mirror" }).element;
+        text.innerHTML = '镜像画面'
         this.element.appendChild(text);
         this.checkbox = new Component(this.element,
             'input',
             {
                 class: 'set__checkbox',
                 type: 'checkbox',
-                id:"loop"
+                id: "mirror"
             }).element as HTMLInputElement;
         this.element.appendChild(this.checkbox);
         this.checkbox.onchange = this.changeValue;
     }
 
     changeValue(Event: Event) {
-        Store.emitLoopChange((Event.target as HTMLInputElement).checked);
+        Store.emitMirrorChange((Event.target as HTMLInputElement).checked);
     }
 }
 
-export default Rollback;
+export default Mirror;

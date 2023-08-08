@@ -101,19 +101,25 @@
                                 }
                             }
                         }
-                        .rollback{
+                        .row{
                             display: flex;
                             flex-direction: row;
-                            &__checkbox{
-                                cursor: pointer;
+                            margin-top:1em;
+                            .set{
+                                display: flex;
+                                flex-direction: row;
+                                &__checkbox{
+                                    cursor: pointer;
+                                }
+                                &:hover{
+                                    color:#00a1d6;    
+                                }
                             }
-                            &:hover{
-                                color:#00a1d6;    
+                            &>div{
+                                margin-bottom:5px;
                             }
                         }
-                        &>div{
-                            margin-bottom:5px;
-                        }
+
                     }
 
                 }

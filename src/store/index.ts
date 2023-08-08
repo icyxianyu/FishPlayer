@@ -164,5 +164,12 @@ export class Store {
     public static onLoopChange(fn: Function) {
         this.eventHub.on(PLAY_EVENT.LOOP, fn);
     }
-
+    // 视频镜像事件
+    public static emitMirrorChange(isMirror: boolean) {
+        this.eventHub.emit(PLAY_EVENT.MIRROR, isMirror);
+    }
+    public static onMirrorChange(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.MIRROR, fn);
+    }
+    
 }
