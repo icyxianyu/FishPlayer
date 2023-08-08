@@ -148,6 +148,15 @@ export class Store {
         this.eventHub.on(PLAY_EVENT.DANMUAREA, fn);
     }
 
+    // 下面是视频设置的事件
+
+    // 视频比例改变事件
+    public static emitScaleChange(scale: string) {
+        this.eventHub.emit(PLAY_EVENT.SCALE, scale);
+    }
+    public static onScaleChange(fn: Function) {
+        this.eventHub.on(PLAY_EVENT.SCALE, fn);
+    }
     
 
 }

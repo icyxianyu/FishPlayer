@@ -111,6 +111,27 @@ class Video extends Component {
         Store.onForward((value: number) => {
             this.player.currentTime += value;
         })
+
+        Store.onScaleChange((scale: string) => {
+
+            if (scale === '自动') {
+                //修改视频比例
+                this.player.style.height = 'auto';
+                this.player.style.width = '100%';
+            }
+            else if (scale === '16:9') {
+                //修改视频比例
+                this.player.style.width = '100%';
+                const offsetWidth = this.player.offsetWidth;
+                this.player.style.height = `${offsetWidth * 9 / 16}px`;
+            }
+            else if (scale === '4:3') {
+                //修改视频比例
+                this.player.style.height = '100%';
+                const offsetHeight = this.player.offsetHeight;
+                this.player.style.width = `${offsetHeight * 4 / 3}px`;
+            }
+        })
     }
 
     initOption() {

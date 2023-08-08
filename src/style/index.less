@@ -70,6 +70,36 @@
                 flex-grow: 1;
                 display: flex;
                 font-weight: bold;
+                .videoSet{
+                    .videoSetModal{
+                        width:200px;
+                        .scale{
+                            display: flex;
+                            flex-direction: column;
+                            white-space: nowrap;
+                            user-select: none;
+                            &__select{
+                                display: flex;
+                                flex-direction: row;
+                                color:white;
+                                width: 100%;
+                                justify-content: space-between;
+                                &__item{
+                                    width: 32%;
+                                    background-color: #a3a3a3;
+                                    cursor: pointer;
+                                    text-align:center;
+                                    vertical-align:middle;
+                                    border-radius: 1px;
+                                }
+                                .active{
+                                    background-color: #00a1d6;
+                                }
+                            }
+                        }
+                    }
+
+                }
                 .time-bar{
                     display:flex;
                     color:var(--styleColor);
@@ -121,7 +151,7 @@
                         position: absolute;
                         left:50%;
                         transform:translate(-50%,-80%);
-                        background-color:rgba(0, 0, 0, 0.5);
+                        background-color:rgba(0, 0, 0, 0.692);
                         display: none;
                         color:var(--styleColor);
                         font-weight: lighter;

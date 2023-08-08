@@ -2,6 +2,7 @@ import { videoSet } from "@/constant";
 import { Video } from "@/player/video";
 import { createSVG } from "@/utils";
 import { Component } from "@/utils/createElement";
+import VideoSetModal from "./videoSetModal";
 
 class VideoSet extends Component {
     video: Video;
@@ -9,19 +10,14 @@ class VideoSet extends Component {
         super(container, "div", { class: "videoSet toolButton icon" });
         this.video = video;
         this.initVideo();
-        this.initEvent();
     }
 
     initVideo() {
         const svg = createSVG(videoSet, '-5 -5 30 30')
         this.element.appendChild(svg);
-        this.createText("视频设置");
-
+        new VideoSetModal(this.element);
     }
 
-    initEvent() {
-
-    }
 }
 
 export default VideoSet;

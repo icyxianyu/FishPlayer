@@ -12,6 +12,7 @@ const PLAY_EVENT = {
     // 是否可以播放事件
     CANPLAY: 'CanPlay',
 
+
     // 是否隐藏工具栏
     ISHIDE: 'IsHide',
     // 工具栏鼠标点击事件
@@ -24,12 +25,11 @@ const PLAY_EVENT = {
     MOUSELEAVE: 'MouseLeave',
     // 工具栏鼠标移入事件
     MOUSEENTER: 'MouseEnter',
-
-
     // 快进和快退事件
     FORWARD: 'Forward',
     // 固定声音改变事件
     FIXEDSOUNDCHANGE: 'FixedSoundChange',
+
 
     // 弹幕事件
     DANMU: 'Danmu',
@@ -41,6 +41,10 @@ const PLAY_EVENT = {
 
     // 消息事件
     MESSAGE: 'Message',
+
+
+    // 比例事件
+    SCALE: 'Scale',
 }
 
 export default PLAY_EVENT;
