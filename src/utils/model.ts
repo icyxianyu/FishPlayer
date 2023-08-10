@@ -32,19 +32,10 @@ export class Modal extends Component {
                 }, this.time)
             })
 
-            this.element.addEventListener('touchstart', () => {
-                clearTimeout(this.timer);
-            })
-
             this.element.addEventListener('touchmove', () => {
                 clearTimeout(this.timer);
             })
 
-            this.element.addEventListener('touchend', () => {
-                this.timer = setTimeout(() => {
-                    this.element.style.display = 'none';
-                }, this.time)
-            })
         } else {
             this.container.onmouseenter = () => {
                 clearTimeout(this.timer);

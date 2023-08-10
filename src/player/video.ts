@@ -8,17 +8,18 @@ class Video extends Component {
     options: playerOptions;
     mediaSource!: MediaSource;
     Env: boolean;
+    scale!: string;
 
     constructor(container: HTMLElement, options: playerOptions) {
         super(container, 'video', { class: 'fish-video' });
         this.player = this.element as HTMLVideoElement;
         this.options = options;
         this.Env = Env();
-        this.init();
-        this.initEvent();
         this.initEventHub();
+        this.initEvent();
         this.initOption();
-
+        this.initMobile();
+        this.init();
     }
     init() {
         const { stream, url } = this.options;
@@ -125,8 +126,7 @@ class Video extends Component {
             const offsetHeight = this.player.offsetHeight;
             if (scale === '自动') {
                 // 获取视频信息中的比例
-                const { videoWidth, videoHeight } = this.player;
-                this.player.style.width = `${offsetHeight * videoWidth / videoHeight}px`;
+                this.player.style.width = `${offsetHeight * 16 / 9}px`;
                 this.player.style.scale = '自动';
             }
             else if (scale === '16:9') {
@@ -139,6 +139,7 @@ class Video extends Component {
                 this.player.style.width = `${offsetHeight * 4 / 3}px`;
                 this.player.style.scale = '4:3';
             }
+            this.scale = scale;
         })
 
         Store.onLoopChange((isLoop: boolean) => {
@@ -164,6 +165,13 @@ class Video extends Component {
 
         if (initRate) {
             Store.emitRateChange(initRate);
+        }
+    }
+
+    initMobile() {
+        if (this.Env) {
+            this.element.setAttribute('playsinline', 'true');
+            this.element.setAttribute('x5-video-player-type', 'h5');
         }
     }
 }

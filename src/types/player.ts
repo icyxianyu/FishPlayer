@@ -38,8 +38,8 @@ export type playerOptions = {
     url: string;
     stream?: boolean;
     el: HTMLElement;
-    width?: number;
-    height?: number;
+    width?: string;
+    height?: string;
     initVolumne?: number;
     theme?: string;
     rate?: number[];

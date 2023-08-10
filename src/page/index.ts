@@ -32,9 +32,9 @@ class Player extends Component {
     init() {
         const { width, height, isShowControl } = this.options;
         if (width)
-            this.element.style.width = width + 'px';
+            this.element.style.width = width;
         if (height)
-            this.element.style.height = height + 'px';
+            this.element.style.height = height;
 
 
         if (isShowControl) {
@@ -78,6 +78,13 @@ class Player extends Component {
                 Store.emitForward(5);
             }
         }
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                screen.orientation.lock('landscape');
+            } else {
+                screen.orientation.unlock();
+            }
+        })
     }
 
     initEventHub() {
@@ -129,7 +136,6 @@ class Player extends Component {
 
     initObserver() {
         const resizeObserver = new ResizeObserver(() => {
-            console.log('resize')
             Store.emitScaleChange(this.scale);
         });
         resizeObserver.observe(this.element);
