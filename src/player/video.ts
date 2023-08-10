@@ -1,4 +1,5 @@
 import mp4Player from "@/mp4/mp4Play";
+import { Player } from "@/page";
 import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
@@ -23,10 +24,14 @@ class Video extends Component {
     }
     init() {
         const { stream, url } = this.options;
-        if (stream) {
-            new mp4Player(url, this.player);
-        } else
-            this.player.src = url;
+        // 根据 url 判断是不是MP4
+        const isMp4 = url.match(/\.mp4$/) ? true : false;
+        if (isMp4) {
+            if (stream) {
+                new mp4Player(url, this.player);
+            } else
+                this.player.src = url;
+        }
         this.player.crossOrigin = 'anonymous';
     }
     initEvent() {

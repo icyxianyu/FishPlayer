@@ -26,6 +26,8 @@ class Player extends Component {
         this.initEventHub();
         this.initMobile();
         this.initObserver();
+        this.initPlugin();
+
         return this.proxyEvent();
     }
 
@@ -139,6 +141,15 @@ class Player extends Component {
             Store.emitScaleChange(this.scale);
         });
         resizeObserver.observe(this.element);
+    }
+
+    initPlugin() {
+        const { plugin } = this.options;
+        plugin?.forEach((item) => {
+            if (plugin) {
+                item(this);
+            }
+        })
     }
 }
 

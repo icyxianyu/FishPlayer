@@ -1,3 +1,4 @@
+import { Player } from "@/page";
 
 interface initOptions {
     opacity?: number;
@@ -48,7 +49,9 @@ export type playerOptions = {
     control?: Control;
     components?: components;
     danmaku?: danmakuOptions;
+    plugin?: Plugin[];
 }
+export type Plugin = (player: Player) => {}
 
 export type classProps = {
     [key: string]: string;
