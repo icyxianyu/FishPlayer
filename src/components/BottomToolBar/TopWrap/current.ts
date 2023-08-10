@@ -37,10 +37,8 @@ class CurrentButton extends Component {
         })
 
         Store.onMouseClick((persent: number) => {
-            if (this.isDrag) {
-                const { width } = this.parentNode.getBoundingClientRect();
-                this.element.style.left = `${persent * width}px`;
-            }
+            const { width } = this.parentNode.getBoundingClientRect();
+            this.element.style.left = `${persent * width}px`;
         })
 
     }

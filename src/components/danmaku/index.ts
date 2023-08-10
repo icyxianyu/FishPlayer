@@ -191,7 +191,6 @@ class danmaku extends Component {
                 trueIndexes.push(index);
             }
         });
-        console.log(this.trackArray)
         if (trueIndexes.length === 0) {
             return Math.floor(Math.random() * this.trackNum); 
         }

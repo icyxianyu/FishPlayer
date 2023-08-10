@@ -69,7 +69,7 @@ class Video extends Component {
 
 
         // 可以播放事件
-        this.element.oncanplay = (en: Event): any => {
+        this.player.oncanplay = (en: Event): any => {
             Store.emitCanPlay(true);
         }
 
@@ -121,23 +121,23 @@ class Video extends Component {
         })
 
         Store.onScaleChange((scale: string) => {
-
+            this.player.style.height = '100%';
+            const offsetHeight = this.player.offsetHeight;
             if (scale === '自动') {
-                //修改视频比例
-                this.player.style.height = 'auto';
-                this.player.style.width = '100%';
+                // 获取视频信息中的比例
+                const { videoWidth, videoHeight } = this.player;
+                this.player.style.width = `${offsetHeight * videoWidth / videoHeight}px`;
+                this.player.style.scale = '自动';
             }
             else if (scale === '16:9') {
                 //修改视频比例
-                this.player.style.width = '100%';
-                const offsetWidth = this.player.offsetWidth;
-                this.player.style.height = `${offsetWidth * 9 / 16}px`;
+                this.player.style.width = `${offsetHeight * 16 / 9}px`;
+                this.player.style.scale = '16:9';
             }
             else if (scale === '4:3') {
                 //修改视频比例
-                this.player.style.height = '100%';
-                const offsetHeight = this.player.offsetHeight;
                 this.player.style.width = `${offsetHeight * 4 / 3}px`;
+                this.player.style.scale = '4:3';
             }
         })
 

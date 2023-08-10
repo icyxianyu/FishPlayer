@@ -44,6 +44,7 @@ class TopWrap extends Component {
             });
 
             this.element.addEventListener('touchend', (e: Event) => {
+                Store.emitMouseLeave(true);
                 Store.emitIsDrag(false);
                 Store.emitMouseClick(x / w);
             });

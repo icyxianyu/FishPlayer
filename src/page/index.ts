@@ -8,24 +8,24 @@ import { Component } from "@/utils/createElement";
 import danmaku from "@/components/danmaku";
 import Message from "@/components/message";
 import Env from "@/utils/Env";
+import Mobile from "@/components/mobil/mobile";
 class Player extends Component {
 
     options: playerOptions;
-    timer: any;
-    isPause: boolean;
+    timer: any = null;
+    isPause: boolean = true;
     video: Video;
-    Env: boolean;
+    Env: boolean = Env();
+    scale: string = '自动';
     constructor(options: playerOptions) {
         super(options.el, 'div', { class: 'video-container' });
         this.video = new Video(this.element, options);
         this.options = options;
-        this.timer = null;
-        this.isPause = true;
-        this.Env = Env();
         this.init();
         this.initEvent();
         this.initEventHub();
-
+        this.initMobile();
+        this.initObserver();
         return this.proxyEvent();
     }
 
@@ -85,6 +85,11 @@ class Player extends Component {
             this.isPause = isPause;
             this.changePasue();
         })
+
+        Store.onScaleChange((scale: string) => {
+            this.scale = scale;
+        })
+
     }
 
     changePasue() {
@@ -114,6 +119,20 @@ class Player extends Component {
                 return true;
             }
         })
+    }
+
+    initMobile() {
+        if (this.Env) {
+            new Mobile(this.element, this.video, this);
+        }
+    }
+
+    initObserver() {
+        const resizeObserver = new ResizeObserver(() => {
+            console.log('resize')
+            Store.emitScaleChange(this.scale);
+        });
+        resizeObserver.observe(this.element);
     }
 }
 

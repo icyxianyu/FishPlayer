@@ -29,7 +29,7 @@ class RightContainer extends Component {
         }
 
         if (volumne)
-            new Volume(this.element, video);
+            new Volume(this.element, video, Player);
         if (rate)
             new Rate(this.element, video);
         if (setting)

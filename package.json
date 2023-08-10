@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/hammerjs": "^2.0.41",
+    "hammerjs": "^2.0.8",
     "mp4box": "^0.5.2"
   },
   "devDependencies": {
