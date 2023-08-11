@@ -1,0 +1,13 @@
+/node_modules/
+/src/
+/test/
+/assets/
+/.vscode/
+/script/
+/assets/
+.babelrc
+.gitignore
+.npmignore
+.npmrc
+tsconfig.json
+
