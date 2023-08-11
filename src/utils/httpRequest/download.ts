@@ -52,10 +52,15 @@ class download {
         this.getFile();
     }
 
+    setUrl(url: string) {
+        this.url = url;
+    }
+
     setInterval(time: number) {
         this.time = time;
     }
-    setChunckStart(chunkStart: number) {
+
+    setChunkStart(chunkStart: number) {
         this.chunkStart = chunkStart;
 
     }
@@ -103,7 +108,7 @@ class download {
 
                 ctx.isEnd = response.byteLength !== ctx.chunkSize
                     || response.byteLength === ctx.totalLength;
-                response.fileStart = ctx.start
+                response.fileStart = ctx.chunkStart
                 ctx.callback(response, ctx.isEnd)
 
                 if (ctx.isGetFile && !ctx.isEnd) {

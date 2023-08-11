@@ -1,5 +1,5 @@
 declare module 'mp4box' {
-    interface MP4MediaTrack {
+    export interface MP4MediaTrack {
         id: number
         created: Date
         modified: Date
@@ -15,6 +15,18 @@ declare module 'mp4box' {
         codec: string
         language: string
         nb_samples: number
+    }
+
+    export interface MoovBoxInfo {
+        duration?: number
+        timescale?: number
+        isFragmented?: boolean
+        isProgressive?: boolean
+        hasIOD?: boolean
+        created?: Date
+        modified?: Date
+        tracks?: MediaTrack[]
+        [props: string]: any
     }
 
     interface MP4VideoData {
@@ -102,12 +114,12 @@ declare module 'mp4box' {
         start(): void
         stop(): void
         flush(): void
-        seek(time: number, b: boolean): { offset: number; [props: string]: any }
+        seek(time: number, b: boolean): { offset: number;[props: string]: any }
     }
 
     export const Log: LogInterface
 
     export function createFile(): MP4File
 
-    export {}
+    export { }
 }
