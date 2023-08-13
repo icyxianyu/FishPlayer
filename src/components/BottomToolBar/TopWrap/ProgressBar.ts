@@ -19,6 +19,11 @@ class progress extends Component {
             const persent = time / this.video.duration;
             this.element.style.width = `${persent * width}px`;
         })
+        
+        Store.onMouseClick((persent: number) => {
+            const { width } = this.parentNode.getBoundingClientRect();
+            this.element.style.width = `${persent * width}px`;
+        })
     }
 
 }

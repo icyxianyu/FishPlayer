@@ -6,6 +6,7 @@ class Total extends Component {
     constructor(container: HTMLElement, video: Video) {
         super(container, "div", { class: "total" });
         this.player = video.element as HTMLVideoElement;
+        this.element.innerHTML = '00:00'
         this.init();
     }
     init() {

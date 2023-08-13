@@ -5,16 +5,16 @@
   "keywords": [
     "player",
     "mobile",
-    "hls",
-    "mpeg"
+    "mp4",
+    "danmaku"
   ],
   "type": "module",
   "main": "./dist/player.min.cjs.js",
-  "module": "./dist/player.min.es.js",
+  "module": "./dist/player.min.esm.js",
   "browser": "./dist/player.min.umd.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && rollup -c",
+    "build": "rimraf dist && rollup -cw",
     "build:tsc": "tsc",
     "build:dts": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --project tsconfig.json  --no-check"
   },

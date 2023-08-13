@@ -61,6 +61,7 @@ class mp4Player {
         }
         // 当发生seeking事件时，如常规的加载或者点击进度条时触发的seeking时，暂停当前下载并开始请求当前时间点的数据
         this.Video.addEventListener('seeking', (e: Event) => {
+
             let i, start, end
             let seek_info
             let video = this.Video
@@ -143,7 +144,6 @@ class mp4Player {
             // 调用更新结束事件的处理函数，表示当前添加完成的是初始化分段
             this.onUpdateEnd.call(sb, false, true, ctx);
             sb.ms.pendingInits--; // 媒体源的未初始化分段数量减一
-            // 如果媒体源的未初始化分段数量为 0，开始播放
             if (sb.ms.pendingInits === 0) {
                 this.start();
             }
