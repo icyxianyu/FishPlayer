@@ -6,11 +6,11 @@
 不基于某一种开发框架，可以在任何框架中使用，支持MP4流式播放，可自定义功能插件
 
 目标和进展
-#### PC端
+#### 移动端
 
 ![](https://github.com/icyxianyu/FishPlayer/blob/master/preview/pc.jpg?raw=true)
 
-#### 移动端
+#### PC端
 
 ![](https://github.com/icyxianyu/FishPlayer/blob/master/preview/h5.jpg?raw=true)
 基础功能
