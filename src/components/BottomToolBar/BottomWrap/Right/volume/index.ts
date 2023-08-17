@@ -1,3 +1,3 @@
-export *from "./Slide"
-export * from "./volume"
-export * from "./volumeButton"
+export * from "./Slide";
+export * from "./volume";
+export * from "./volumeButton";

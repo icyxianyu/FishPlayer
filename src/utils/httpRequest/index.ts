@@ -1,3 +1,3 @@
-export * from "./download"
-export * from "./httpRequest"
-export * from "./xhrRequest"
+export * from "./download";
+export * from "./httpRequest";
+export * from "./xhrRequest";

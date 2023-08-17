@@ -1,2 +1,2 @@
-export * from  "./title";
-export * from  "./topToolBar";
+export * from "./title";
+export * from "./topToolBar";

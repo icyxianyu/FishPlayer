@@ -4,17 +4,16 @@ import { timeToMinutes } from "@/utils/time";
 import { Store } from "@/store";
 
 export class Current extends Component {
-    player: HTMLVideoElement;
-    constructor(container: HTMLElement, video: Video) {
-        super(container, "div", { class: "current" });
-        this.player = video.element as HTMLVideoElement;
-        this.element.innerHTML = timeToMinutes('0');
-        this.initEventHub();
-    }
-    initEventHub() {
-        Store.onTimeUpdate((time: string) => {
-            this.element.innerHTML = timeToMinutes(time);
-        })
-    }
-
+  player: HTMLVideoElement;
+  constructor(container: HTMLElement, video: Video) {
+    super(container, "div", { class: "current" });
+    this.player = video.element as HTMLVideoElement;
+    this.element.innerHTML = timeToMinutes("0");
+    this.initEventHub();
+  }
+  initEventHub() {
+    Store.onTimeUpdate((time: string) => {
+      this.element.innerHTML = timeToMinutes(time);
+    });
+  }
 }
