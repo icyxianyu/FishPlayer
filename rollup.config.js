@@ -2,22 +2,31 @@ import ts from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import alias from '@rollup/plugin-alias';
-import { resolve } from 'path';
-import { fileURLToPath } from 'url';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { defineConfig } from 'rollup';
-import { terser } from 'rollup-plugin-terser';
+import {
+  resolve
+} from 'path';
+import {
+  fileURLToPath
+} from 'url';
+import {
+  nodeResolve
+} from '@rollup/plugin-node-resolve';
+import {
+  defineConfig
+} from 'rollup';
+import {
+  terser
+} from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 import dts from 'rollup-plugin-dts';
+import px2rem from 'postcss-pxtorem'
 
 const extensions = ['.ts', '.less'];
 
-export default defineConfig([
-  {
+export default defineConfig([{
     input: './src/index.ts',
-    output: [
-      {
+    output: [{
         file: './dist/player.cjs.js',
         format: 'cjs',
       },
@@ -55,16 +64,30 @@ export default defineConfig([
       babel(),
       commonjs(),
       postcss({
-        plugins: [autoprefixer()],
+        plugins: [
+          autoprefixer(),
+          px2rem({
+            rootValue: 16,
+            propList: [
+                'margin-left',
+                'min-width',
+                'height',
+                'font-size',
+                'bottom',
+                'width',
+                'padding',
+                'transform',
+            ],
+        }),
+        ],
         extract: 'css/index.css',
       }),
       alias({
-        entries: [
-          {
-            find: '@',
-            replacement: resolve(fileURLToPath(import.meta.url), 'src'),
-          },
-        ],
+        entries: [{
+          find: '@',
+          replacement: resolve(fileURLToPath(
+            import.meta.url), 'src'),
+        }, ],
       }),
     ],
   },
