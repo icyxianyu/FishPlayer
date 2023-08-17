@@ -1,13 +1,13 @@
 import download from "@/utils/httpRequest/download";
-import MP4Box, { MP4ArrayBuffer, MP4Info } from 'mp4box'
+import MP4Box, { MP4ArrayBuffer, MP4Info, MP4SourceBuffer } from 'mp4box'
 
-class mp4Player {
+export class mp4Player {
     url: string;
-    downloader!: download;
-    mediaSource!: MediaSource;
+    downloader: download;
+    mediaSource: MediaSource;
     Video: HTMLVideoElement;
     info!: MP4Info
-    mp4boxfile!: MP4Box.MP4File;
+    mp4boxfile: MP4Box.MP4File;
     lastSeekTime: number = 0;
     constructor(url: string, Video: HTMLVideoElement) {
         this.url = url;
@@ -35,7 +35,7 @@ class mp4Player {
             sampleNum,
             is_last
         ) {
-            let sb: any = user;
+            let sb = user;
             sb.segmentIndex++;
             sb.pendingAppends.push({
                 id: id,
@@ -91,7 +91,7 @@ class mp4Player {
             const { id, codec } = p;
             const mime = `video/mp4; codecs="${codec}"`;
             if (MediaSource.isTypeSupported(mime)) {
-                const sb: MP4Box.MP4SourceBuffer = this.mediaSource.addSourceBuffer(mime);
+                const sb = this.mediaSource.addSourceBuffer(mime) as any;
                 sb.ms = this.mediaSource;
                 sb.id = id;
                 this.mp4boxfile.setSegmentOptions(id, sb)
@@ -111,7 +111,7 @@ class mp4Player {
         // 遍历初始化的段分割
         for (let i = 0; i < initSegs.length; i++) {
             // 从初始化段分割中获取源缓冲区对象
-            let sb: any = initSegs[i].user;
+            let sb = initSegs[i].user;
             // 如果是第一个分段，将媒体源的 pendingInits 设置为 0
             if (i === 0) {
                 sb.ms.pendingInits = 0;
@@ -131,7 +131,7 @@ class mp4Player {
     // 当初始化分段被添加完成时的回调函数
     onInitAppended(e: Event) {
         let ctx = this;
-        let sb: any = e.target;
+        let sb = e.target as MP4SourceBuffer;
         // 如果媒体源处于 'open' 状态
         if (sb.ms.readyState === 'open') {
             sb.sampleNum = 0; // 初始化样本编号为 0
@@ -193,7 +193,7 @@ class mp4Player {
         this.downloader.setChunkSize(1024 * 1024 * 1)
         this.downloader.setUrl(this.url)
         this.downloader.setFunction(
-            function (response: MP4ArrayBuffer, end: boolean, error: any) {
+            function (response: MP4ArrayBuffer, end: boolean) {
                 if (response) {
                     ctx.mp4boxfile.appendBuffer(response, end);
                 }
@@ -208,4 +208,3 @@ class mp4Player {
     }
 }
 
-export default mp4Player;

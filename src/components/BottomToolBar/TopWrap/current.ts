@@ -2,7 +2,7 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { Player } from "@/page";
 import { Store } from "@/store";
-class CurrentButton extends Component {
+export class CurrentButton extends Component {
     parentNode: HTMLElement;
     player: HTMLVideoElement;
     isDrag!: boolean;
@@ -44,5 +44,3 @@ class CurrentButton extends Component {
     }
 
 }
-
-export default CurrentButton;

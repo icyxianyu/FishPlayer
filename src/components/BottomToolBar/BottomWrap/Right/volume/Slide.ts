@@ -2,7 +2,7 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { Modal } from "@/utils/model";
 import { Store } from "@/store";
-class VolumeSlider extends Modal {
+export class VolumeSlider extends Modal {
     constructor(container: HTMLElement, video: Video) {
         super(container, "input",
             {
@@ -44,5 +44,3 @@ class VolumeSlider extends Modal {
     }
 
 }
-
-export default VolumeSlider;

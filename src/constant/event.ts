@@ -1,54 +1,46 @@
-const PLAY_EVENT = {
+export enum PLAY_EVENT {
     // 播放时间更新事件
-    TIMEUPDATE: 'TimeUpdate',
+    TIMEUPDATE = 'TimeUpdate',
     // 声音事件
-    SOUNDCHANGE: 'SoundChange',
+    SOUNDCHANGE = 'SoundChange',
     // 播放速度改变事件
-    RATECHANGE: 'RateChange',
+    RATECHANGE = 'RateChange',
     // 是否暂停事件
-    ISPAUSE: 'IsPause',
+    ISPAUSE = 'IsPause',
     // 缓冲事件
-    WAITING: 'Waiting',
+    WAITING = 'Waiting',
     // 是否可以播放事件
-    CANPLAY: 'CanPlay',
-
-
+    CANPLAY = 'CanPlay',
     // 是否隐藏工具栏
-    ISHIDE: 'IsHide',
+    ISHIDE = 'IsHide',
     // 工具栏鼠标点击事件
-    MOUSECLICK: 'MouseClick',
+    MOUSECLICK = 'MouseClick',
     // 工具栏是否处于拖拽
-    ISDRAG: 'IsDrag',
+    ISDRAG = 'IsDrag',
     // 工具栏鼠标移动事件
-    MOUSEMOVE: 'MouseMove',
+    MOUSEMOVE = 'MouseMove',
     // 工具栏鼠标离开事件
-    MOUSELEAVE: 'MouseLeave',
+    MOUSELEAVE = 'MouseLeave',
     // 工具栏鼠标移入事件
-    MOUSEENTER: 'MouseEnter',
+    MOUSEENTER = 'MouseEnter',
     // 快进和快退事件
-    FORWARD: 'Forward',
+    FORWARD = 'Forward',
     // 固定声音改变事件
-    FIXEDSOUNDCHANGE: 'FixedSoundChange',
-
-
+    FIXEDSOUNDCHANGE = 'FixedSoundChange',
     // 弹幕事件
-    DANMU: 'Danmu',
+    DANMU = 'Danmu',
     // 弹幕透明度事件
-    OPACITY: 'Opacity',
+    OPACITY = 'Opacity',
     // 弹幕显示事件
-    DANMUAREA: 'DanmuArea',
-
-
+    DANMUAREA = 'DanmuArea',
     // 消息事件
-    MESSAGE: 'Message',
-
-
+    MESSAGE = 'Message',
     // 比例事件
-    SCALE: 'Scale',
+    SCALE = 'Scale',
     // 视频循环事件
-    LOOP: 'Loop',
+    LOOP = 'Loop',
     // 视频镜像事件
-    MIRROR: 'Mirror',
+    MIRROR = 'Mirror',
 }
 
-export default PLAY_EVENT;
+export default {}

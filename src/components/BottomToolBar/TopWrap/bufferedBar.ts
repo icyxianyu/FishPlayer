@@ -2,7 +2,7 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { Player } from "@/page";
 
-class BuffererBar extends Component {
+export class BuffererBar extends Component {
     constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, 'div', { class: 'buffered-bar' });
         this.initEvent(video);
@@ -23,5 +23,3 @@ class BuffererBar extends Component {
         }, 1000)
     }
 }
-
-export default BuffererBar;

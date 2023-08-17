@@ -1,14 +1,14 @@
-import Loading from "@/components/loading";
-import BottomToolBar from "@/components/BottomToolBar";
-import TopToolBar from "@/components/TopToolBar";
+import { LoadingContainer } from "@/components/loading/loadingContainer";
+import { BottomToolBar } from "@/components/BottomToolBar/toolBar";
+import { TopToolBar } from "@/components/TopToolBar/topToolBar";
 import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { playerOptions } from "@/types/player";
 import { Component } from "@/utils/createElement";
-import danmaku from "@/components/danmaku";
-import Message from "@/components/message";
-import Env from "@/utils/Env";
-import Mobile from "@/components/mobil/mobile";
+import { danmaku } from "@/components/danmaku/danmaku";
+import { Message } from "@/components/message";
+import { Env } from "@/utils/Env";
+import { Mobile } from "@/components/mobile/mobile";
 class Player extends Component {
 
     options: playerOptions;
@@ -44,7 +44,7 @@ class Player extends Component {
             new BottomToolBar(this.element, this.video, this);
             new TopToolBar(this.element, this.video, this)
         }
-        new Loading(this.element, this.video)
+        new LoadingContainer(this.element, this.video)
     }
     initEvent() {
         Store.emitIsHide(true);

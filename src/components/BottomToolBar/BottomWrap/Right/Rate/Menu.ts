@@ -1,9 +1,9 @@
 import { Video } from "@/player/video";
 import { playerOptions } from "@/types/player";
 import { Modal } from "@/utils/model";
-import SingleRate from "./singleRate";
+import { SingleRate } from "./singleRate";
 
-class Menu extends Modal {
+export class Menu extends Modal {
     rate: number[] | undefined;
 
     constructor(container: HTMLElement, video: Video) {
@@ -20,4 +20,3 @@ class Menu extends Modal {
 
 
 }
-export default Menu;

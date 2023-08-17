@@ -5,7 +5,7 @@ import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { createImage } from "@/utils/screenshot";
 
-class ScreenShot extends Component {
+export class ScreenShot extends Component {
     video: HTMLVideoElement;
     constructor(container: HTMLElement, video: Video) {
         super(container, 'div', { class: 'toolButton screenShot icon' });
@@ -42,4 +42,3 @@ class ScreenShot extends Component {
         }
     }
 }
-export default ScreenShot;

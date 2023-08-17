@@ -1,9 +1,20 @@
 import { Player } from "@/page";
+import { Video } from "@/player/video";
+import { Component } from "@/utils/createElement";
 
 interface initOptions {
     opacity?: number;
     area?: number;
 }
+
+// 组件的构造函数
+export interface ComponentConstructor {
+    new(
+        container: HTMLElement,
+        video: Video,
+        player: Player,
+    ): Component
+} 
 
 // 继承自fetch接口第二个参数
 export interface danmakuOptions extends RequestInit {
@@ -28,10 +39,10 @@ export type Control = {
 }
 
 export type components = {
-    left?: any[];
-    right?: any[];
-    center?: any[];
-    top?: any[];
+    left?: ComponentConstructor[];
+    right?: ComponentConstructor[];
+    center?: ComponentConstructor[];
+    top?: ComponentConstructor[];
 }
 
 export type playerOptions = {

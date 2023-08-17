@@ -6,7 +6,7 @@ import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { enterFull, exitFull, FullHTMLElement } from "@/utils/full";
 
-class FullScreen extends Component {
+export class FullScreen extends Component {
 
     FullScreenButton!: SVGSVGElement;
     MiniScreenButton!: SVGSVGElement;
@@ -61,4 +61,3 @@ class FullScreen extends Component {
         }
     }
 }
-export default FullScreen;

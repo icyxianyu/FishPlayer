@@ -3,8 +3,8 @@ import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { Component } from "@/utils";
 import Hammer from "hammerjs";
-import MobileVolume from "./mobileVolume";
-class Mobile extends Component {
+import { MobileVolume } from "./mobileVolume";
+export class Mobile extends Component {
     hammer: HammerManager;
     startX: number;
     startY: number;
@@ -57,4 +57,3 @@ class Mobile extends Component {
         });
     }
 }
-export default Mobile;

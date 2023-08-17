@@ -2,7 +2,7 @@ import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { Component } from "@/utils";
 
-class OpacitySet extends Component {
+export class OpacitySet extends Component {
     Slider!: Component;
     CurrentValue!: Component;
     video: Video;
@@ -58,5 +58,3 @@ class OpacitySet extends Component {
     }
 
 }
-
-export default OpacitySet;

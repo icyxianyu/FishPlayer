@@ -1,9 +1,9 @@
 import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
-import Current from "./current";
+import { Current } from "./current";
 import Total from "./total";
 
-class TimeBar extends Component {
+export class TimeBar extends Component {
     player: HTMLVideoElement;
     video: Video;
     constructor(container: HTMLElement, video: Video) {
@@ -18,4 +18,3 @@ class TimeBar extends Component {
         new Total(this.element, this.video);
     }
 }
-export default TimeBar;

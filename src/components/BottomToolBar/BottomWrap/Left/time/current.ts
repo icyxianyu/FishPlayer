@@ -3,7 +3,7 @@ import { Component } from "@/utils/createElement";
 import { timeToMinutes } from "@/utils/time";
 import { Store } from "@/store";
 
-class Current extends Component {
+export class Current extends Component {
     player: HTMLVideoElement;
     constructor(container: HTMLElement, video: Video) {
         super(container, "div", { class: "current" });
@@ -18,4 +18,3 @@ class Current extends Component {
     }
 
 }
-export default Current;

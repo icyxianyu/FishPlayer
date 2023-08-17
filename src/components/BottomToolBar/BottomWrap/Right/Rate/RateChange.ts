@@ -2,7 +2,7 @@ import { Store } from "@/store";
 import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 
-class RateChange extends Component {
+export class RateChange extends Component {
     constructor(container: HTMLElement, video: Video) {
         super(container, 'div', { class: 'RateChange' });
         this.element.innerHTML = `倍数`;
@@ -26,5 +26,3 @@ class RateChange extends Component {
     }
 
 }
-
-export default RateChange;

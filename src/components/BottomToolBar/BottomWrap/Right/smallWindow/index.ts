@@ -4,7 +4,7 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 
-class SmallWindow extends Component {
+export class SmallWindow extends Component {
     Player: Player;
     MiniScreenButton!: SVGSVGElement;
     FullScreenButton!: SVGSVGElement;
@@ -32,4 +32,3 @@ class SmallWindow extends Component {
         }
     }
 }
-export default SmallWindow;

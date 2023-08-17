@@ -2,7 +2,7 @@ import { danmakuPath$1, danmakuPath$2 } from "@/constant";
 import { Store } from "@/store";
 import { Component, createSVG } from "@/utils";
 
-class Danmaku extends Component {
+export class Danmaku extends Component {
     isShow: boolean;
     svg1: SVGSVGElement;
     svg2: SVGSVGElement;
@@ -40,5 +40,3 @@ class Danmaku extends Component {
         })
     }
 }
-
-export default Danmaku;

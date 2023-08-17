@@ -1,5 +1,5 @@
 declare module 'mp4box' {
-    export interface MP4MediaTrack {
+    interface MP4MediaTrack {
         id: number
         created: Date
         modified: Date
@@ -15,18 +15,6 @@ declare module 'mp4box' {
         codec: string
         language: string
         nb_samples: number
-    }
-
-    export interface MoovBoxInfo {
-        duration?: number
-        timescale?: number
-        isFragmented?: boolean
-        isProgressive?: boolean
-        hasIOD?: boolean
-        created?: Date
-        modified?: Date
-        tracks?: MediaTrack[]
-        [props: string]: any
     }
 
     interface MP4VideoData {
@@ -75,16 +63,16 @@ declare module 'mp4box' {
     export type MP4ArrayBuffer = ArrayBuffer & { fileStart: number }
 
     export type MP4MediaSource = MediaSource & {
-        sb?: MP4SourceBuffer
-        pendingInits?: number
+        sb: MP4SourceBuffer
+        pendingInits: number
     }
     export type MP4SourceBuffer = SourceBuffer & {
-        ms?: MP4MediaSource
-        id?: number
-        segmentIndex?: number
-        pendingAppends?: any[]
-        sampleNum?: number
-        is_last?: boolean
+        ms: MP4MediaSource
+        id: number
+        segmentIndex: number
+        pendingAppends: any[]
+        sampleNum: number
+        is_last: boolean
     }
 
     export interface MP4File {
@@ -108,18 +96,18 @@ declare module 'mp4box' {
         initializeSegmentation(): {
             id: number
             user: MP4SourceBuffer
-            buffer?: ArrayBuffer
+            buffer: ArrayBuffer
         }[]
         releaseUsedSamples(id: number, samples: number): void
         start(): void
         stop(): void
         flush(): void
-        seek(time: number, b: boolean): { offset: number;[props: string]: any }
+        seek(time: number, b: boolean): { offset: number; [props: string]: any }
     }
 
     export const Log: LogInterface
 
     export function createFile(): MP4File
 
-    export { }
+    export {}
 }

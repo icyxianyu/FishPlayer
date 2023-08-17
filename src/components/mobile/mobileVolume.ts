@@ -4,7 +4,7 @@ import { Component, createSVG } from "@/utils";
 import { Store } from "@/store";
 import { volumeIcon, volumeOffIcon } from "@/constant";
 
-class MobileVolume extends Component {
+export class MobileVolume extends Component {
     video: HTMLVideoElement;
     volumebutton!: SVGSVGElement;
     vlomeoffbutton!: SVGSVGElement;
@@ -39,5 +39,3 @@ class MobileVolume extends Component {
     }
 
 }
-
-export default MobileVolume;

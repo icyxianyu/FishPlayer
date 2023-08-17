@@ -5,7 +5,7 @@ import { Component } from "@/utils/createElement";
 import { createSVG } from "@/utils/createSVG";
 import { Store } from "@/store";
 
-class WebFullScreen extends Component {
+export class WebFullScreen extends Component {
     Player: Player;
     MiniScreenButton!: SVGSVGElement;
     FullScreenButton!: SVGSVGElement;
@@ -55,4 +55,3 @@ class WebFullScreen extends Component {
         this.isFull = !this.isFull;
     }
 }
-export default WebFullScreen;

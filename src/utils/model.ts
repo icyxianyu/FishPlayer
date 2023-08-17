@@ -1,6 +1,6 @@
 import { Component } from "./createElement";
 import { classProps } from "../types/player";
-import Env from "./Env";
+import { Env } from "./Env";
 
 export class Modal extends Component {
     container: HTMLElement;

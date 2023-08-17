@@ -1,7 +1,7 @@
 import { Store } from "@/store";
 import { Component } from "@/utils/createElement";
 
-class SingleRate extends Component {
+export class SingleRate extends Component {
     constructor(container: HTMLElement, speed: number) {
         super(container, 'div', { class: 'singleRate' });
         this.element.innerHTML = `${speed}x`;
@@ -27,4 +27,3 @@ class SingleRate extends Component {
     }
 
 }
-export default SingleRate;

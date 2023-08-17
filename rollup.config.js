@@ -19,7 +19,6 @@ import {
 } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
-import dts from 'rollup-plugin-dts';
 import px2rem from 'postcss-pxtorem'
 
 const extensions = ['.ts', '.less'];
@@ -69,16 +68,16 @@ export default defineConfig([{
           px2rem({
             rootValue: 16,
             propList: [
-                'margin-left',
-                'min-width',
-                'height',
-                'font-size',
-                'bottom',
-                'width',
-                'padding',
-                'transform',
+              'margin-left',
+              'min-width',
+              'height',
+              'font-size',
+              'bottom',
+              'width',
+              'padding',
+              'transform',
             ],
-        }),
+          }),
         ],
         extract: 'css/index.css',
       }),
@@ -90,15 +89,5 @@ export default defineConfig([{
         }, ],
       }),
     ],
-  },
-  // 生成类型声明文件
-  {
-    input: 'src/index.ts',
-    output: {
-      file: 'dist/index.d.ts',
-      format: 'esm',
-    },
-    plugins: [dts()],
-    external: [/\.less$/],
   },
 ]);

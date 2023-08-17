@@ -3,7 +3,7 @@ import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { Component } from "@/utils";
 
-class ShowPlace extends Component {
+export class ShowPlace extends Component {
     Slider!: Component;
     CurrentValue!: Component;
     video: Video;
@@ -64,5 +64,3 @@ class ShowPlace extends Component {
         }
     }
 }
-
-export default ShowPlace;

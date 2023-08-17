@@ -3,7 +3,7 @@ import { Video } from "@/player/video";
 import { Store } from "@/store";
 import { Component } from "@/utils";
 
-class Message extends Component {
+export class Message extends Component {
     maxNumber: number = 3;
     messageNumber: number = 0;
     timer!: NodeJS.Timeout;
@@ -27,5 +27,3 @@ class Message extends Component {
         })
     }
 }
-
-export default Message;

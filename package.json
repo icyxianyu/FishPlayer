@@ -14,7 +14,7 @@
   "browser": "./dist/player.min.umd.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && rollup -cw",
+    "build": "rimraf dist && rollup -c && npm run build:dts",
     "build:tsc": "tsc",
     "build:dts": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --project tsconfig.json  --no-check"
   },

@@ -5,7 +5,7 @@ import { Video } from "@/player/video";
 import { Component } from "@/utils/createElement";
 import { toolbarHeight } from "@/constant/px";
 
-class Title extends Component {
+export class Title extends Component {
 
     constructor(container: HTMLElement, video: Video, Player: Player) {
         super(container, 'span', { class: 'title' });
@@ -15,5 +15,3 @@ class Title extends Component {
     }
 
 }
-
-export default Title;

@@ -5,7 +5,7 @@ import { createSVG } from "@/utils/createSVG";
 import { pauseIcon, playIcon } from "@/constant";
 import { Store } from "@/store";
 
-class PlayButton extends Component {
+export class PlayButton extends Component {
     play: SVGSVGElement;
     pause: SVGSVGElement;
     player: HTMLVideoElement;
@@ -40,5 +40,3 @@ class PlayButton extends Component {
         }
     }
 }
-
-export default PlayButton;

@@ -1,4 +1,4 @@
-function getOffSetX(event: MouseEvent | TouchEvent, parentElement: HTMLElement) {
+export function getOffSetX(event: MouseEvent | TouchEvent, parentElement: HTMLElement) {
     let pageX;
     if (event instanceof TouchEvent) {
         pageX = event.touches[0].pageX
@@ -10,5 +10,3 @@ function getOffSetX(event: MouseEvent | TouchEvent, parentElement: HTMLElement) 
     const offsetX = pageX - parentX;
     return offsetX;
 }
-
-export default getOffSetX;

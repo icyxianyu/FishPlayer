@@ -4,7 +4,7 @@ import { Component } from "@/utils/createElement";
 import currentBar from "./currentbar";
 import time from "./time";
 
-class HoverContainer extends Component {
+export class HoverContainer extends Component {
 
     constructor(container: HTMLElement, video: Video) {
         super(container, 'div', { class: 'hover-container' });
@@ -24,5 +24,3 @@ class HoverContainer extends Component {
         })
     }
 }
-
-export default HoverContainer;

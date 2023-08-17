@@ -1,5 +1,5 @@
-import PLAY_EVENT from "@/constant/event";
-import { EventHub } from "@/utils/pubsub";
+import { PLAY_EVENT } from "../constant/event";
+import { EventHub } from "../utils/pubsub";
 
 export class Store {
     protected static eventHub: EventHub = new EventHub();
@@ -171,5 +171,5 @@ export class Store {
     public static onMirrorChange(fn: Function) {
         this.eventHub.on(PLAY_EVENT.MIRROR, fn);
     }
-    
+
 }

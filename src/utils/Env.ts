@@ -1,4 +1,4 @@
-function Env() {
+export function Env() {
     const machineType = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ?
         'Mobile' :
         'Desktop'
@@ -8,6 +8,3 @@ function Env() {
         return false;
     }
 }
-
-
-export default Env;
