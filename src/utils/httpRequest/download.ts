@@ -36,7 +36,10 @@ class download {
     this.chunkStart = 0;
     this.resume();
   }
-
+  // 取消上一次请求
+  cancel() {
+    this.xhrRequest.cancel();
+  }
   stop() {
     clearTimeout(this.timeoutID);
     this.timeoutID = undefined;

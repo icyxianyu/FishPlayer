@@ -38,7 +38,6 @@ class Video extends Component {
     this.player.ontimeupdate = () => {
       Store.emitTimeUpdate(this.player.currentTime);
     };
-
     if (this.Env) {
       this.player.ondblclick = () => {
         Store.emitIsPause(!this.player.paused);
@@ -78,6 +77,7 @@ class Video extends Component {
 
     this.player.onseeking = (en: Event): any => {
       Store.emitWaiting(true);
+      Store.emitTimeUpdate(this.player.currentTime);
     };
 
     this.player.onseeked = (en: Event): any => {

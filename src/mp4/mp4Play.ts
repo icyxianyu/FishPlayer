@@ -9,6 +9,12 @@ export class mp4Player {
   info!: MP4Info;
   mp4boxfile: MP4Box.MP4File;
   lastSeekTime: number = 0;
+  maxRow: number = 4;
+  hasRow: number = 0;
+  isSeeking: boolean = false;
+  // 预载
+  isPreload: boolean = false;
+
   constructor(url: string, Video: HTMLVideoElement) {
     this.url = url;
     this.Video = Video;
@@ -71,12 +77,55 @@ export class mp4Player {
             return;
           }
         }
-        this.downloader.stop();
-        seek_info = this.mp4boxfile.seek(video.currentTime, true);
-        this.downloader.setChunkStart(seek_info.offset);
-        this.downloader.resume();
-        this.lastSeekTime = video.currentTime;
+        if (!this.isSeeking) {
+          this.downloader.cancel();
+          seek_info = this.mp4boxfile.seek(video.currentTime, true);
+          this.downloader.setChunkStart(seek_info.offset);
+          this.downloader.resume();
+          this.isSeeking = true;
+          this.isPreload = true;
+          this.hasRow = 0;
+          this.lastSeekTime = video.currentTime;
+        }
       }
+    });
+
+    this.Video.addEventListener("seeked", (e: Event) => {
+      this.isSeeking = false;
+      this.isPreload = false;
+    });
+
+    this.Video.addEventListener("timeupdate", (e: Event) => {
+      let video = this.Video;
+      for (let i = 0; i < video.buffered.length; i++) {
+        // 找到当前播放时间所在的缓冲区域
+        if (
+          video.currentTime >= video.buffered.start(i) &&
+          video.currentTime <= video.buffered.end(i)
+        ) {
+          // 如果当前播放时间已经接近缓冲区的末尾，则开始加载下一个分段
+          if (
+            video.buffered.end(i) - video.currentTime < 5 &&
+            !this.isSeeking &&
+            !this.isPreload
+          ) {
+            this.downloader.cancel();
+            let seek_info = this.mp4boxfile.seek(video.buffered.end(i), true);
+            this.downloader.setChunkStart(seek_info.offset);
+            this.isPreload = true;
+            this.hasRow = 0;
+            this.downloader.resume();
+            break;
+          }
+        }
+      }
+    });
+
+    this.Video.addEventListener("canplay", (e: Event) => {
+      this.downloader.setChunkSize(300 * 1024 * 1);
+      this.maxRow = 10;
+      this.hasRow = 0;
+      this.downloader.stop();
     });
   }
 
@@ -145,7 +194,6 @@ export class mp4Player {
 
   start() {
     this.downloader.setChunkStart(this.mp4boxfile.seek(0, true).offset);
-    this.downloader.setChunkSize(1024 * 1024 * 1);
     this.downloader.setInterval(1000);
     this.mp4boxfile.start();
     this.downloader.resume();
@@ -185,6 +233,13 @@ export class mp4Player {
       response: MP4ArrayBuffer,
       end: boolean,
     ) {
+      if (ctx.hasRow < ctx.maxRow) {
+        ctx.hasRow++;
+      } else if (ctx.hasRow === ctx.maxRow) {
+        ctx.isPreload = false;
+        ctx.downloader.stop();
+      }
+
       if (response) {
         ctx.mp4boxfile.appendBuffer(response, end);
       }

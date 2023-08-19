@@ -14,11 +14,13 @@
   "browser": "./dist/player.min.umd.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && rollup -c && npm run build:dts",
+    "build": "rimraf dist && rollup -cw ",
+    "build:prod": "rimraf dist && rollup -c && npm run build:dts",
     "build:tsc": "tsc",
     "build:dts": "dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --project tsconfig.json  --no-check",
     "prepare": "husky install",
-    "format": "prettier --write \"**/*.{js,ts,css,less,json}\""
+    "format": "prettier --write \"**/*.{js,ts,css,less,json}\"",
+    "release": "release-it"
   },
   "author": "icyxianyu",
   "license": "MIT",
@@ -53,6 +55,7 @@
     "postcss": "^8.4.25",
     "postcss-pxtorem": "^6.0.0",
     "prettier": "^3.0.2",
+    "release-it": "^16.1.5",
     "rimraf": "^5.0.1",
     "rollup": "^3.26.2",
     "rollup-plugin-babel": "^4.4.0",

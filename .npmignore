@@ -4,7 +4,9 @@
 /assets/
 /.vscode/
 /script/
+/picture/
 /assets/
+/.husky/
 .babelrc
 .gitignore
 .npmignore
