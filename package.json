@@ -8,10 +8,9 @@
     "mp4",
     "danmaku"
   ],
-  "type": "module",
-  "main": "./dist/player.min.cjs.js",
-  "module": "./dist/player.min.esm.js",
-  "browser": "./dist/player.min.umd.js",
+  "main": "./dist/player.esm.js",
+  "module": "./dist/player.esm.js",
+  "browser": "./dist/player.umd.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && rollup -cw ",
