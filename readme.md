@@ -2,6 +2,14 @@
 
 `TypeScript` `Less` `rollup`
 
+安装使用
+
+```
+  npm install fishplayer
+```
+
+<a href="https://doc-dun.vercel.app/">使用文档</a>
+
 ## 基于TypeScript的视频播放器
 
 不基于某一种开发框架，可以在任何框架中使用，支持MP4流式播放，可自定义功能插件

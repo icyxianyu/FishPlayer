@@ -1,6 +1,6 @@
 {
   "name": "fishplayer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "开箱即用的流媒体播放组件",
   "keywords": [
     "player",
@@ -34,6 +34,14 @@
     "url": "https://github.com/icyxianyu/FishPlayer"
   },
   "homepage": "https://github.com/icyxianyu/FishPlayer",
+  "browserslist": [
+    "defaults",
+    "not ie < 8",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ],
   "dependencies": {
     "@types/hammerjs": "^2.0.41",
     "hammerjs": "^2.0.8",

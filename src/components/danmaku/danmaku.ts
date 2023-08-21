@@ -21,6 +21,7 @@ export class danmaku extends Component {
   constructor(container: HTMLElement, video: Video, player: Player) {
     super(container, "div", { class: "danmaku" });
     const { danmaku } = video.options;
+    if (!danmaku) return;
     this.danmakuOptions = danmaku;
     this.trackArray = new Array(this.trackNum).fill(true);
     this.video = video.element as HTMLVideoElement;
