@@ -16,6 +16,7 @@ export interface ComponentConstructor {
 export interface danmakuOptions extends RequestInit {
   url?: string;
   interval?: number;
+  isCanvas?: boolean;
   data: Record<string, any>;
   initOptions?: initOptions;
 }
