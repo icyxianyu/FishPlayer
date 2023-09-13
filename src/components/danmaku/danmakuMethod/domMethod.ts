@@ -40,8 +40,8 @@ class DomMethod extends Component {
     function arr() {
       if (!ctx.isPause) {
         ctx.danmakuPool.forEach((item: HTMLElement) => {
-          item.style.left =
-            parseFloat(item.style.left.replace("%", "")) - 0.1 + "%";
+          const translateX = item.style.transform.match(/translateX\((.*)px\)/);
+          item.style.transform = `translateX(${parseInt(translateX[1]) - 1}px)`;
           ctx.observer.observe(item);
         });
       }
@@ -176,6 +176,7 @@ class DomMethod extends Component {
       danmu.style.opacity = this.opacity.toString();
       danmu.setAttribute("data-line", line);
       danmu.style.left = "100%";
+      danmu.style.transform = "translateX(0px)";
       danmu.innerHTML = text;
       this.element.appendChild(danmu);
       this.danmakuPool.push(danmu);
